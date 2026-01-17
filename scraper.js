@@ -273,46 +273,64 @@ async function scrapePlaylist() {
 
         console.log(`✅ ${newTracks.length} nouvelles pistes extraites`);
 
-        // Enrichir les données manquantes (genre et année) en consultant les pages individuelles
+        // Enrichir les données manquantes (genre et année) via recherche Apple Music
         if (newTracks.length > 0) {
             console.log('');
-            console.log('🔍 Enrichissement des métadonnées (genre et année)...');
+            console.log('═══════════════════════════════════════');
+            console.log('🔍 ENRICHISSEMENT DES MÉTADONNÉES');
+            console.log('═══════════════════════════════════════');
             
-            for (let i = 0; i < Math.min(newTracks.length, 10); i++) {
-                const track = newTracks[i];
+            const tracksToEnrich = newTracks.filter(track => 
+                track.genre === 'Non spécifié' || track.year === new Date().getFullYear()
+            );
+            
+            console.log(`📊 Nouvelles pistes: ${newTracks.length}`);
+            console.log(`🔄 À enrichir: ${tracksToEnrich.length}`);
+            console.log('');
+
+            let enrichedCount = 0;
+
+            for (let i = 0; i < tracksToEnrich.length; i++) {
+                const track = tracksToEnrich[i];
                 
-                if (track.genre === 'Non spécifié' || track.year === new Date().getFullYear()) {
-                    try {
-                        console.log(`⏳ Recherche infos pour: "${track.title}" - ${track.artist}`);
+                console.log(`[${i + 1}/${tracksToEnrich.length}] 🎵 "${track.title}" - ${track.artist}`);
+                
+                try {
+                    // Construire une requête de recherche
+                    const searchQuery = `${track.title} ${track.artist}`.replace(/[^\w\s]/gi, ' ').trim();
+                    const searchUrl = `https://music.apple.com/fr/search?term=${encodeURIComponent(searchQuery)}`;
+                    
+                    await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+                    await randomDelay(1500, 2500);
+
+                    // Chercher le premier résultat de chanson
+                    const songLink = await page.evaluate(() => {
+                        const links = Array.from(document.querySelectorAll('a[href*="/song/"]'));
+                        return links.length > 0 ? links[0].href : null;
+                    });
+
+                    if (songLink) {
+                        console.log(`  ✅ Résultat trouvé, consultation...`);
                         
-                        // Chercher le lien de la piste dans la page
-                        const trackLink = await page.evaluate((title, artist) => {
-                            const links = Array.from(document.querySelectorAll('a[href*="/song/"]'));
-                            const matchingLink = links.find(link => {
-                                const text = link.textContent.toLowerCase();
-                                return text.includes(title.toLowerCase().substring(0, 20));
-                            });
-                            return matchingLink ? matchingLink.href : null;
-                        }, track.title, track.artist);
+                        await page.goto(songLink, { waitUntil: 'domcontentloaded', timeout: 30000 });
+                        await randomDelay(1500, 2500);
 
-                        if (trackLink) {
-                            // Ouvrir la page de la piste dans un nouvel onglet
-                            const trackPage = await browser.newPage();
-                            await trackPage.setUserAgent(userAgents[Math.floor(Math.random() * userAgents.length)]);
-                            
-                            await trackPage.goto(trackLink, { waitUntil: 'domcontentloaded', timeout: 30000 });
-                            await randomDelay(1500, 2500);
+                        // Extraire métadonnées de la page de détails
+                        const metadata = await page.evaluate(() => {
+                            let genre = null;
+                            let year = null;
 
-                            // Extraire genre et année de la page de détails
-                            const metadata = await trackPage.evaluate(() => {
-                                let genre = null;
-                                let year = null;
+                            // Genre - chercher dans plusieurs endroits
+                            const genreLink = document.querySelector('a[href*="/genre/"]');
+                            if (genreLink) {
+                                genre = genreLink.textContent.trim();
+                            }
 
-                                // Chercher le genre
+                            // Si pas trouvé, chercher dans d'autres sélecteurs
+                            if (!genre) {
                                 const genreSelectors = [
                                     '[data-testid="genre"]',
-                                    '[class*="genre"]',
-                                    'a[href*="/genre/"]'
+                                    '[class*="genre"]'
                                 ];
                                 
                                 for (const selector of genreSelectors) {
@@ -322,57 +340,73 @@ async function scrapePlaylist() {
                                         break;
                                     }
                                 }
-
-                                // Chercher l'année
-                                const yearSelectors = [
-                                    '[data-testid="release-date"]',
-                                    '[class*="release-date"]',
-                                    '[class*="copyright"]'
-                                ];
-                                
-                                for (const selector of yearSelectors) {
-                                    const el = document.querySelector(selector);
-                                    if (el) {
-                                        const yearMatch = el.textContent.match(/\b(19|20)\d{2}\b/);
-                                        if (yearMatch) {
-                                            year = parseInt(yearMatch[0]);
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                // Chercher aussi dans le texte général
-                                if (!year) {
-                                    const bodyText = document.body.textContent;
-                                    const yearMatch = bodyText.match(/℗\s*(19|20)\d{2}|©\s*(19|20)\d{2}/);
-                                    if (yearMatch) {
-                                        year = parseInt(yearMatch[1] || yearMatch[2]);
-                                    }
-                                }
-
-                                return { genre, year };
-                            });
-
-                            if (metadata.genre) {
-                                track.genre = metadata.genre;
-                                console.log(`  ✅ Genre trouvé: ${metadata.genre}`);
                             }
+
+                            // Année - chercher dans le copyright
+                            const bodyText = document.body.innerText;
                             
-                            if (metadata.year) {
-                                track.year = metadata.year;
-                                console.log(`  ✅ Année trouvée: ${metadata.year}`);
+                            // Chercher ℗ YYYY ou © YYYY
+                            let yearMatch = bodyText.match(/[℗©]\s*(19|20)\d{2}/);
+                            if (yearMatch) {
+                                year = parseInt(yearMatch[0].match(/\d{4}/)[0]);
+                            } else {
+                                // Chercher "Released" suivi d'une année
+                                yearMatch = bodyText.match(/Released.*?(19|20)\d{2}/i);
+                                if (yearMatch) {
+                                    year = parseInt(yearMatch[0].match(/\d{4}/)[0]);
+                                }
                             }
 
-                            await trackPage.close();
-                            await randomDelay(800, 1500);
+                            // Chercher aussi dans les balises time
+                            if (!year) {
+                                const timeEl = document.querySelector('time[datetime]');
+                                if (timeEl) {
+                                    const datetime = timeEl.getAttribute('datetime');
+                                    const dateMatch = datetime.match(/\d{4}/);
+                                    if (dateMatch) {
+                                        year = parseInt(dateMatch[0]);
+                                    }
+                                }
+                            }
+
+                            return { genre, year };
+                        });
+
+                        let updated = false;
+
+                        if (metadata.genre && track.genre === 'Non spécifié') {
+                            track.genre = metadata.genre;
+                            console.log(`  ✅ Genre: ${metadata.genre}`);
+                            updated = true;
                         }
-                    } catch (e) {
-                        console.warn(`  ⚠️  Impossible de récupérer les métadonnées: ${e.message}`);
+
+                        if (metadata.year && track.year === new Date().getFullYear()) {
+                            track.year = metadata.year;
+                            console.log(`  ✅ Année: ${metadata.year}`);
+                            updated = true;
+                        }
+
+                        if (updated) {
+                            enrichedCount++;
+                        } else {
+                            console.log(`  ⚠️  Aucune métadonnée trouvée`);
+                        }
+                    } else {
+                        console.log(`  ❌ Aucun résultat de recherche`);
                     }
+
+                    // Délai entre chaque recherche
+                    await randomDelay(1000, 2000);
+
+                } catch (e) {
+                    console.error(`  ❌ Erreur: ${e.message}`);
                 }
             }
             
-            console.log('✅ Enrichissement terminé pour les 10 premières pistes');
+            console.log('');
+            console.log('═══════════════════════════════════════');
+            console.log(`✅ Enrichissement terminé: ${enrichedCount}/${tracksToEnrich.length} pistes`);
+            console.log('═══════════════════════════════════════');
         }
 
         // Mettre à jour les données
