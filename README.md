@@ -6,13 +6,6 @@ Script automatisé pour extraire les données d'une playlist Apple Music et gén
 
 - [Node.js](https://nodejs.org/) version 16 ou supérieure
 
-## 🚀 Installation
-
-```powershell
-cd "C:\Users\Scryl\Bureau\Musique"
-npm install
-```
-
 ## 🔧 Utilisation
 
 ### 1. Scraper la playlist
