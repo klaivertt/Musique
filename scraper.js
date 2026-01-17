@@ -206,6 +206,15 @@ async function scrapePlaylist() {
                                     el.querySelector('time') ||
                                     el.querySelector('[data-testid="duration"]');
 
+                    // Chercher l'année de sortie
+                    let yearEl = el.querySelector('[class*="release-date"]') ||
+                                el.querySelector('[data-testid="release-date"]') ||
+                                el.querySelector('[class*="year"]');
+                    
+                    // Chercher le genre
+                    let genreEl = el.querySelector('[class*="genre"]') ||
+                                 el.querySelector('[data-testid="genre"]');
+
                     if (titleEl && titleEl.textContent.trim()) {
                         const title = titleEl.textContent.trim();
                         const artist = artistEl ? artistEl.textContent.trim() : 'Artiste inconnu';
@@ -219,14 +228,30 @@ async function scrapePlaylist() {
                         );
 
                         if (!isDuplicate) {
+                            // Extraire l'année
+                            let year = new Date().getFullYear();
+                            if (yearEl) {
+                                const yearText = yearEl.textContent.trim();
+                                const yearMatch = yearText.match(/\b(19|20)\d{2}\b/);
+                                if (yearMatch) {
+                                    year = parseInt(yearMatch[0]);
+                                }
+                            }
+
+                            // Extraire le genre
+                            let genre = 'Non spécifié';
+                            if (genreEl) {
+                                genre = genreEl.textContent.trim();
+                            }
+
                             const track = {
                                 position: existingTracks.length + tracks.length + 1,
                                 title: title,
                                 artist: artist,
                                 duration: duration,
                                 durationSec: 0,
-                                genre: 'Non spécifié',
-                                year: new Date().getFullYear()
+                                genre: genre,
+                                year: year
                             };
 
                             // Convertir la durée en secondes
@@ -247,6 +272,108 @@ async function scrapePlaylist() {
         }, foundSelector, existingData.tracks, startPosition);
 
         console.log(`✅ ${newTracks.length} nouvelles pistes extraites`);
+
+        // Enrichir les données manquantes (genre et année) en consultant les pages individuelles
+        if (newTracks.length > 0) {
+            console.log('');
+            console.log('🔍 Enrichissement des métadonnées (genre et année)...');
+            
+            for (let i = 0; i < Math.min(newTracks.length, 10); i++) {
+                const track = newTracks[i];
+                
+                if (track.genre === 'Non spécifié' || track.year === new Date().getFullYear()) {
+                    try {
+                        console.log(`⏳ Recherche infos pour: "${track.title}" - ${track.artist}`);
+                        
+                        // Chercher le lien de la piste dans la page
+                        const trackLink = await page.evaluate((title, artist) => {
+                            const links = Array.from(document.querySelectorAll('a[href*="/song/"]'));
+                            const matchingLink = links.find(link => {
+                                const text = link.textContent.toLowerCase();
+                                return text.includes(title.toLowerCase().substring(0, 20));
+                            });
+                            return matchingLink ? matchingLink.href : null;
+                        }, track.title, track.artist);
+
+                        if (trackLink) {
+                            // Ouvrir la page de la piste dans un nouvel onglet
+                            const trackPage = await browser.newPage();
+                            await trackPage.setUserAgent(userAgents[Math.floor(Math.random() * userAgents.length)]);
+                            
+                            await trackPage.goto(trackLink, { waitUntil: 'domcontentloaded', timeout: 30000 });
+                            await randomDelay(1500, 2500);
+
+                            // Extraire genre et année de la page de détails
+                            const metadata = await trackPage.evaluate(() => {
+                                let genre = null;
+                                let year = null;
+
+                                // Chercher le genre
+                                const genreSelectors = [
+                                    '[data-testid="genre"]',
+                                    '[class*="genre"]',
+                                    'a[href*="/genre/"]'
+                                ];
+                                
+                                for (const selector of genreSelectors) {
+                                    const el = document.querySelector(selector);
+                                    if (el && el.textContent.trim()) {
+                                        genre = el.textContent.trim();
+                                        break;
+                                    }
+                                }
+
+                                // Chercher l'année
+                                const yearSelectors = [
+                                    '[data-testid="release-date"]',
+                                    '[class*="release-date"]',
+                                    '[class*="copyright"]'
+                                ];
+                                
+                                for (const selector of yearSelectors) {
+                                    const el = document.querySelector(selector);
+                                    if (el) {
+                                        const yearMatch = el.textContent.match(/\b(19|20)\d{2}\b/);
+                                        if (yearMatch) {
+                                            year = parseInt(yearMatch[0]);
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                // Chercher aussi dans le texte général
+                                if (!year) {
+                                    const bodyText = document.body.textContent;
+                                    const yearMatch = bodyText.match(/℗\s*(19|20)\d{2}|©\s*(19|20)\d{2}/);
+                                    if (yearMatch) {
+                                        year = parseInt(yearMatch[1] || yearMatch[2]);
+                                    }
+                                }
+
+                                return { genre, year };
+                            });
+
+                            if (metadata.genre) {
+                                track.genre = metadata.genre;
+                                console.log(`  ✅ Genre trouvé: ${metadata.genre}`);
+                            }
+                            
+                            if (metadata.year) {
+                                track.year = metadata.year;
+                                console.log(`  ✅ Année trouvée: ${metadata.year}`);
+                            }
+
+                            await trackPage.close();
+                            await randomDelay(800, 1500);
+                        }
+                    } catch (e) {
+                        console.warn(`  ⚠️  Impossible de récupérer les métadonnées: ${e.message}`);
+                    }
+                }
+            }
+            
+            console.log('✅ Enrichissement terminé pour les 10 premières pistes');
+        }
 
         // Mettre à jour les données
         const playlistData = {
