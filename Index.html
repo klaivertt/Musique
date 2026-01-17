@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Playlist + Graphiques</title>
+    <style>
+        :root {
+            --bg: #0b0f1a;
+            --fg: #e6ebf2;
+            --accent: #ff4d4d;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+        }
+        .layout {
+            position: relative;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+        header {
+            padding: 16px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 12px 20px 20px;
+        }
+        .embed-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            padding: 12px;
+        }
+        .hint {
+            font-size: 12px;
+            opacity: .7;
+            margin: 8px 4px 12px;
+        }
+        footer {
+            padding: 8px 20px 18px;
+            font-size: 12px;
+            opacity: .7;
+        }
+        @media (max-width: 900px) {
+            .content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <h1>🎵 Playlist Apple Music + Graphiques</h1>
+        </header>
+
+        <div class="content">
+            <section class="embed-card">
+                <p class="hint">Lecteur intégré</p>
+                <iframe
+                    allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                    frameborder="0"
+                    height="450"
+                    style="width: 100%; max-width: 660px; overflow: hidden; border-radius: 10px"
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                    src="https://embed.music.apple.com/fr/playlist/one/pl.u-11zBJy3sNDW3q3q">
+                </iframe>
+            </section>
+        </div>
+
+        <div class="content">
+            <section class="embed-card">
+                <h2 style="margin:8px 4px 12px; font-size:16px;">📊 Données de la playlist</h2>
+                <div id="stats" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px;">
+                    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px;">
+                        <div style="opacity:.8; font-size:12px;">Total de titres</div>
+                        <div id="statTracks" style="font-size:22px; font-weight:600;">—</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px;">
+                        <div style="opacity:.8; font-size:12px;">Durée totale</div>
+                        <div id="statDuration" style="font-size:22px; font-weight:600;">—</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); padding:12px; border-radius:10px;">
+                        <div style="opacity:.8; font-size:12px;">Artistes uniques</div>
+                        <div id="statArtists" style="font-size:22px; font-weight:600;">—</div>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: minmax(280px,1fr) minmax(280px,1fr); gap:14px; margin-top:14px;">
+                    <div>
+                        <div style="opacity:.8; font-size:12px; margin:6px 0 8px;">Répartition par artiste (Top 8)</div>
+                        <canvas id="chartArtists" height="260"></canvas>
+                    </div>
+                    <div>
+                        <div style="opacity:.8; font-size:12px; margin:6px 0 8px;">Durée des titres (Top 20)</div>
+                        <canvas id="chartDurations" height="260"></canvas>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: minmax(280px,1fr) minmax(280px,1fr); gap:14px; margin-top:14px;">
+                    <div>
+                        <div style="opacity:.8; font-size:12px; margin:6px 0 8px;">Répartition par genre</div>
+                        <canvas id="chartGenres" height="260"></canvas>
+                    </div>
+                    <div>
+                        <div style="opacity:.8; font-size:12px; margin:6px 0 8px;">Distribution par année</div>
+                        <canvas id="chartYears" height="260"></canvas>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px;">
+                    <div style="opacity:.8; font-size:12px; margin:6px 0 8px;">Évolution temporelle de la durée moyenne</div>
+                    <canvas id="chartTimeline" height="240"></canvas>
+                </div>
+
+                <p id="dataHint" class="hint" style="margin-top:12px;">Chargement des données...</p>
+            </section>
+        </div>
+
+        <footer>
+            Graphiques générés depuis playlist.json
+        </footer>
+    </div>
+
+    <script>
+        let playlistData = null;
+
+        async function loadPlaylistData() {
+            try {
+                const response = await fetch('playlist.json');
+                if (!response.ok) throw new Error('Fichier non trouvé');
+                
+                const data = await response.json();
+                playlistData = {
+                    name: data.name || "Playlist",
+                    tracks: data.tracks.map(t => ({
+                        title: t.title,
+                        artist: t.artist,
+                        duration: t.durationSec || parseDuration(t.duration),
+                        year: t.year || 2020,
+                        genre: t.genre || 'Pop'
+                    }))
+                };
+                
+                console.log(`✅ ${playlistData.tracks.length} pistes chargées depuis playlist.json`);
+                return true;
+            } catch (error) {
+                console.warn('⚠️  Erreur de chargement:', error.message);
+                document.getElementById('dataHint').textContent = 'Erreur: fichier playlist.json introuvable';
+                return false;
+            }
+        }
+
+        function parseDuration(durationStr) {
+            const match = String(durationStr).match(/(\d+):(\d+)/);
+            return match ? parseInt(match[1]) * 60 + parseInt(match[2]) : 180;
+        }
+
+        function fmtTotal(sec) {
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            const s = sec % 60;
+            return `${h}h ${m}m ${s}s`;
+        }
+
+        function drawPie(canvas, data, palette) {
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const w = rect.width;
+            const h = rect.height;
+            const cx = w / 2;
+            const cy = h / 2;
+            const r = Math.min(w, h) * 0.35;
+
+            const total = data.reduce((sum, item) => sum + item.value, 0);
+            let startAngle = -Math.PI / 2;
+
+            data.forEach((item, i) => {
+                const sliceAngle = (item.value / total) * Math.PI * 2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.arc(cx, cy, r, startAngle, startAngle + sliceAngle);
+                ctx.closePath();
+                ctx.fillStyle = palette[i % palette.length];
+                ctx.fill();
+                ctx.strokeStyle = '#0b0f1a';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                const midAngle = startAngle + sliceAngle / 2;
+                const labelX = cx + Math.cos(midAngle) * (r + 30);
+                const labelY = cy + Math.sin(midAngle) * (r + 30);
+                ctx.fillStyle = '#e6ebf2';
+                ctx.font = '11px system-ui';
+                ctx.textAlign = 'center';
+                ctx.fillText(item.label, labelX, labelY);
+
+                startAngle += sliceAngle;
+            });
+        }
+
+        function drawBar(canvas, labels, values, color) {
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const w = rect.width;
+            const h = rect.height;
+            const pad = 40;
+            const barWidth = (w - pad * 2) / values.length;
+            const max = Math.max(...values, 1);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.05)';
+            ctx.fillRect(0, 0, w, h);
+
+            values.forEach((val, i) => {
+                const barHeight = ((val / max) * (h - pad - 30));
+                const x = pad + i * barWidth + 2;
+                const y = h - 30 - barHeight;
+
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, barWidth - 4, barHeight);
+
+                if (labels[i] && i % Math.ceil(values.length / 10) === 0) {
+                    ctx.save();
+                    ctx.translate(x + barWidth / 2, h - 10);
+                    ctx.rotate(-Math.PI / 4);
+                    ctx.fillStyle = '#e6ebf2';
+                    ctx.font = '9px system-ui';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(labels[i].substring(0, 12), 0, 0);
+                    ctx.restore();
+                }
+            });
+        }
+
+        function drawLine(canvas, labels, values, color) {
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const w = rect.width;
+            const h = rect.height;
+            const pad = 40;
+            const stepX = (w - pad * 2) / (values.length - 1 || 1);
+            const max = Math.max(...values, 1);
+            const min = Math.min(...values, 0);
+            const range = max - min || 1;
+
+            ctx.fillStyle = 'rgba(255,255,255,0.05)';
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+
+            values.forEach((val, i) => {
+                const x = pad + i * stepX;
+                const y = h - pad - ((val - min) / range) * (h - pad * 2);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            ctx.fillStyle = color;
+            values.forEach((val, i) => {
+                const x = pad + i * stepX;
+                const y = h - pad - ((val - min) / range) * (h - pad * 2);
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            ctx.fillStyle = '#e6ebf2';
+            ctx.font = '10px system-ui';
+            ctx.textAlign = 'center';
+            labels.forEach((label, i) => {
+                if (i % Math.ceil(labels.length / 8) === 0) {
+                    const x = pad + i * stepX;
+                    ctx.fillText(String(label), x, h - 10);
+                }
+            });
+        }
+
+        function analyzeAndRender() {
+            if (!playlistData || !playlistData.tracks.length) {
+                document.getElementById('dataHint').textContent = 'Aucune donnée à afficher';
+                return;
+            }
+
+            const tracks = playlistData.tracks;
+
+            const totalTracks = tracks.length;
+            const totalDuration = tracks.reduce((sum, t) => sum + t.duration, 0);
+            const artistsMap = {};
+            const genresMap = {};
+            const yearsMap = {};
+
+            tracks.forEach(t => {
+                artistsMap[t.artist] = (artistsMap[t.artist] || 0) + 1;
+                genresMap[t.genre] = (genresMap[t.genre] || 0) + 1;
+                yearsMap[t.year] = (yearsMap[t.year] || 0) + 1;
+            });
+
+            const uniqueArtists = Object.keys(artistsMap).length;
+
+            document.getElementById('statTracks').textContent = totalTracks;
+            document.getElementById('statDuration').textContent = fmtTotal(totalDuration);
+            document.getElementById('statArtists').textContent = uniqueArtists;
+
+            const palette = ['#ff4d4d', '#ffd166', '#06d6a0', '#118ab2', '#ef476f', '#8338ec', '#3a86ff', '#20bf6b', '#f72585', '#4cc9f0'];
+
+            const topArtists = Object.entries(artistsMap)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8)
+                .map(([artist, count]) => ({ label: artist, value: count }));
+            drawPie(document.getElementById('chartArtists'), topArtists, palette);
+
+            const sortedByDuration = [...tracks].sort((a, b) => b.duration - a.duration).slice(0, 20);
+            drawBar(
+                document.getElementById('chartDurations'),
+                sortedByDuration.map(t => t.title),
+                sortedByDuration.map(t => t.duration),
+                '#4cc9f0'
+            );
+
+            const topGenres = Object.entries(genresMap)
+                .sort((a, b) => b[1] - a[1])
+                .map(([genre, count]) => ({ label: genre, value: count }));
+            drawPie(document.getElementById('chartGenres'), topGenres, palette);
+
+            const years = Object.keys(yearsMap).sort();
+            const yearCounts = years.map(y => yearsMap[y]);
+            drawBar(
+                document.getElementById('chartYears'),
+                years,
+                yearCounts,
+                '#ef476f'
+            );
+
+            const yearDurations = {};
+            tracks.forEach(t => {
+                if (!yearDurations[t.year]) yearDurations[t.year] = [];
+                yearDurations[t.year].push(t.duration);
+            });
+            const yearsSorted = Object.keys(yearDurations).sort();
+            const avgDurationsPerYear = yearsSorted.map(y => {
+                const durations = yearDurations[y];
+                return Math.round(durations.reduce((a, b) => a + b, 0) / durations.length);
+            });
+            drawLine(
+                document.getElementById('chartTimeline'),
+                yearsSorted,
+                avgDurationsPerYear,
+                '#8338ec'
+            );
+
+            document.getElementById('dataHint').textContent = `✅ ${totalTracks} pistes analysées depuis playlist.json`;
+        }
+
+        async function init() {
+            const loaded = await loadPlaylistData();
+            if (loaded) {
+                analyzeAndRender();
+            }
+        }
+        
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

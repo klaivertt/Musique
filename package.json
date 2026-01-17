@@ -1,0 +1,15 @@
+{
+  "name": "playlist-scraper",
+  "version": "1.0.0",
+  "description": "Scraper pour extraire les données d'une playlist Apple Music",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js"
+  },
+  "keywords": ["apple-music", "scraper", "playlist"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.9.0"
+  }
+}
