@@ -6,10 +6,15 @@
   "scripts": {
     "scrape": "node scraper.js"
   },
-  "keywords": ["apple-music", "scraper", "playlist"],
+  "keywords": [
+    "apple-music",
+    "scraper",
+    "playlist"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^21.9.0"
+    "puppeteer": "^24.35.0",
+    "xlsx": "^0.18.5"
   }
 }
