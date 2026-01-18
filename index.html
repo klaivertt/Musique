@@ -547,8 +547,12 @@
                 <div class="charts-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div class="chart-container" id="chartArtistsContainer" style="max-height: 500px; overflow-y: auto;">
                         <div class="chart-header">
-                            <div class="chart-title">🎤 Répartition par artiste</div>
+                            <div class="chart-title">🎤 Répartition par artiste <span id="artistsCount" style="font-size: 11px; color: var(--fg-dimmed);"></span></div>
                             <div class="chart-controls">
+                                <button class="chart-btn" onclick="setDisplayLimit('artists', 10)" title="Top 10">Top 10</button>
+                                <button class="chart-btn active" onclick="setDisplayLimit('artists', 30)" title="Top 30" id="btnArtists30">Top 30</button>
+                                <button class="chart-btn" onclick="setDisplayLimit('artists', 50)" title="Top 50">Top 50</button>
+                                <button class="chart-btn" onclick="setDisplayLimit('artists', 999999)" title="Tout afficher">Tout</button>
                                 <div class="zoom-controls">
                                     <button class="zoom-btn" onclick="zoomChart('chartArtists', 0.8)" title="Zoom arrière">−</button>
                                     <span class="zoom-level" id="zoomArtists">50%</span>
@@ -563,8 +567,12 @@
                     </div>
                     <div class="chart-container" id="chartAlbumsContainer" style="max-height: 500px; overflow-y: auto;">
                         <div class="chart-header">
-                            <div class="chart-title">💿 Albums par artiste</div>
+                            <div class="chart-title">💿 Albums par artiste <span id="albumsCount" style="font-size: 11px; color: var(--fg-dimmed);"></span></div>
                             <div class="chart-controls">
+                                <button class="chart-btn" onclick="setDisplayLimit('albums', 10)" title="Top 10">Top 10</button>
+                                <button class="chart-btn active" onclick="setDisplayLimit('albums', 30)" title="Top 30" id="btnAlbums30">Top 30</button>
+                                <button class="chart-btn" onclick="setDisplayLimit('albums', 50)" title="Top 50">Top 50</button>
+                                <button class="chart-btn" onclick="setDisplayLimit('albums', 999999)" title="Tout afficher">Tout</button>
                                 <div class="zoom-controls">
                                     <button class="zoom-btn" onclick="zoomChart('chartAlbumsByArtist', 0.8)">−</button>
                                     <span class="zoom-level" id="zoomAlbums">50%</span>
@@ -578,10 +586,14 @@
                 </div>
 
                 <div class="charts-grid">
-                    <div class="chart-container" id="chartGenresContainer">
+                    <div class="chart-container" id="chartGenresContainer" style="max-height: 500px; overflow-y: auto;">
                         <div class="chart-header">
-                            <div class="chart-title">🎵 Répartition par genre (avec %)</div>
+                            <div class="chart-title">🎵 Répartition par genre (avec %) <span id="genresCount" style="font-size: 11px; color: var(--fg-dimmed);"></span></div>
                             <div class="chart-controls">
+                                <button class="chart-btn" onclick="setDisplayLimit('genres', 10)" title="Top 10">Top 10</button>
+                                <button class="chart-btn active" onclick="setDisplayLimit('genres', 30)" title="Top 30" id="btnGenres30">Top 30</button>
+                                <button class="chart-btn" onclick="setDisplayLimit('genres', 50)" title="Top 50">Top 50</button>
+                                <button class="chart-btn" onclick="setDisplayLimit('genres', 999999)" title="Tout afficher">Tout</button>
                                 <div class="zoom-controls">
                                     <button class="zoom-btn" onclick="zoomChart('chartGenres', 0.8)">−</button>
                                     <span class="zoom-level" id="zoomGenres">50%</span>
@@ -648,6 +660,11 @@
             albums: null,
             genres: null
         };
+        let displayLimits = {
+            artists: 30,
+            albums: 30,
+            genres: 30
+        };
 
         async function loadPlaylistData() {
             try {
@@ -689,18 +706,12 @@
         }
 
         function zoomChart(chartId, factor) {
-            const newZoom = Math.max(0.25, Math.min(3, chartZoomLevels[chartId] * factor));
-            const canvas = document.getElementById(chartId);
-            const currentHeight = parseInt(canvas.getAttribute('height'));
-            const newHeight = Math.round(currentHeight * factor);
-            
-            canvas.setAttribute('height', newHeight);
-            chartZoomLevels[chartId] = newZoom;
+            chartZoomLevels[chartId] = Math.max(0.25, Math.min(3, chartZoomLevels[chartId] * factor));
             
             const zoomDisplayId = chartId.replace('chart', 'zoom');
             const zoomDisplay = document.getElementById(zoomDisplayId);
             if (zoomDisplay) {
-                zoomDisplay.textContent = Math.round(newZoom * 100) + '%';
+                zoomDisplay.textContent = Math.round(chartZoomLevels[chartId] * 100) + '%';
             }
             
             analyzeAndRender();
@@ -718,6 +729,20 @@
             setTimeout(() => analyzeAndRender(), 100);
         }
 
+        function setDisplayLimit(chartType, limit) {
+            displayLimits[chartType] = limit;
+            
+            // Update active button state
+            const container = chartType === 'artists' ? 'chartArtistsContainer' : 
+                             chartType === 'albums' ? 'chartAlbumsContainer' : 'chartGenresContainer';
+            document.querySelectorAll(`#${container} .chart-controls .chart-btn`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            analyzeAndRender();
+        }
+
         function sortChart(chartType, sortType) {
             if (!chartsData[chartType]) return;
             
@@ -733,10 +758,12 @@
             
             chartsData[chartType] = data;
             
+            const limitedData = data.slice(0, displayLimits[chartType]);
+            
             if (chartType === 'artists') {
-                drawHorizontalBar(document.getElementById('chartArtists'), data, '#ff6b6b');
+                drawHorizontalBar(document.getElementById('chartArtists'), limitedData, '#ff6b6b');
             } else if (chartType === 'genres') {
-                drawHorizontalBarWithPercent(document.getElementById('chartGenres'), data, '#4ecdc4');
+                drawHorizontalBarWithPercent(document.getElementById('chartGenres'), limitedData, '#4ecdc4');
             }
         }
 
@@ -754,19 +781,27 @@
             if (!data || data.length === 0) return;
             
             const ctx = canvas.getContext('2d');
-            const dpr = window.devicePixelRatio || 1;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2); // Limiter DPR pour performance
             const rect = canvas.getBoundingClientRect();
             
-            // Calculer la hauteur nécessaire
-            const barHeight = 30;
-            const barSpacing = 10;
-            const totalHeight = Math.max(rect.height, data.length * (barHeight + barSpacing) + 40);
+            // Obtenir le niveau de zoom pour ce canvas
+            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
             
-            canvas.width = rect.width * dpr;
+            // Calculer la hauteur nécessaire - adapter la taille des barres selon le nombre et le zoom
+            const baseBarHeight = data.length > 100 ? 20 : data.length > 50 ? 25 : 30;
+            const baseBarSpacing = data.length > 100 ? 5 : data.length > 50 ? 8 : 10;
+            const barHeight = baseBarHeight * zoomLevel;
+            const barSpacing = baseBarSpacing * zoomLevel;
+            const totalHeight = data.length * (barHeight + barSpacing) + 60;
+            
+            // Définir les dimensions du canvas
+            const w = rect.width;
+            canvas.width = w * dpr;
             canvas.height = totalHeight * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = totalHeight + 'px';
             ctx.scale(dpr, dpr);
 
-            const w = rect.width;
             const h = totalHeight;
             const leftPad = 200;
             const rightPad = 80;
@@ -793,21 +828,21 @@
                 ctx.lineWidth = 1;
                 ctx.strokeRect(leftPad, y, barWidth, barHeight);
                 
-                // Label (nom)
+                // Label (nom) - adapter la taille de police
                 ctx.fillStyle = '#e6ebf2';
-                ctx.font = 'bold 12px system-ui';
+                const fontSize = data.length > 100 ? 10 : 12;
+                ctx.font = `bold ${fontSize}px system-ui`;
                 ctx.textAlign = 'right';
                 const label = String(item.label || 'Unknown');
-                ctx.fillText(label.length > 25 ? label.substring(0, 25) + '...' : label, leftPad - 10, y + barHeight / 2 + 4);
+                const maxLabelLength = data.length > 100 ? 20 : 25;
+                ctx.fillText(label.length > maxLabelLength ? label.substring(0, maxLabelLength) + '...' : label, leftPad - 10, y + barHeight / 2 + 4);
                 
                 // Valeur
                 ctx.fillStyle = '#ffd166';
-                ctx.font = 'bold 12px system-ui';
+                ctx.font = `bold ${fontSize}px system-ui`;
                 ctx.textAlign = 'left';
                 ctx.fillText(item.value, leftPad + barWidth + 8, y + barHeight / 2 + 4);
             });
-            
-            canvas.style.height = h + 'px';
             
             // Ajouter l'interaction au survol
             addCanvasHoverEffect(canvas, data, leftPad, rightPad, topPad, barHeight, barSpacing);
@@ -850,19 +885,27 @@
             if (!data || data.length === 0) return;
             
             const ctx = canvas.getContext('2d');
-            const dpr = window.devicePixelRatio || 1;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2); // Limiter DPR pour performance
             const rect = canvas.getBoundingClientRect();
             
-            // Calculer la hauteur nécessaire
-            const barHeight = 30;
-            const barSpacing = 10;
-            const totalHeight = Math.max(rect.height, data.length * (barHeight + barSpacing) + 40);
+            // Obtenir le niveau de zoom pour ce canvas
+            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
             
-            canvas.width = rect.width * dpr;
+            // Calculer la hauteur nécessaire - adapter la taille des barres selon le nombre et le zoom
+            const baseBarHeight = data.length > 100 ? 20 : data.length > 50 ? 25 : 30;
+            const baseBarSpacing = data.length > 100 ? 5 : data.length > 50 ? 8 : 10;
+            const barHeight = baseBarHeight * zoomLevel;
+            const barSpacing = baseBarSpacing * zoomLevel;
+            const totalHeight = data.length * (barHeight + barSpacing) + 60;
+            
+            // Définir les dimensions du canvas
+            const w = rect.width;
+            canvas.width = w * dpr;
             canvas.height = totalHeight * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = totalHeight + 'px';
             ctx.scale(dpr, dpr);
 
-            const w = rect.width;
             const h = totalHeight;
             const leftPad = 200;
             const rightPad = 100;
@@ -891,21 +934,22 @@
                 ctx.lineWidth = 1;
                 ctx.strokeRect(leftPad, y, barWidth, barHeight);
                 
-                // Label (nom)
+                // Label (nom) - adapter la taille de police
                 ctx.fillStyle = '#e6ebf2';
-                ctx.font = 'bold 12px system-ui';
+                const baseFontSize = data.length > 100 ? 10 : 12;
+                const fontSize = Math.max(8, baseFontSize * zoomLevel);
+                ctx.font = `bold ${fontSize}px system-ui`;
                 ctx.textAlign = 'right';
                 const label = String(item.label || 'Unknown');
-                ctx.fillText(label.length > 25 ? label.substring(0, 25) + '...' : label, leftPad - 10, y + barHeight / 2 + 4);
+                const maxLabelLength = data.length > 100 ? 20 : 25;
+                ctx.fillText(label.length > maxLabelLength ? label.substring(0, maxLabelLength) + '...' : label, leftPad - 10, y + barHeight / 2 + 4);
                 
                 // Pourcentage au lieu de la valeur
                 ctx.fillStyle = '#ffd166';
-                ctx.font = 'bold 12px system-ui';
+                ctx.font = `bold ${fontSize}px system-ui`;
                 ctx.textAlign = 'left';
                 ctx.fillText(`${percentage}%`, leftPad + barWidth + 8, y + barHeight / 2 + 4);
             });
-            
-            canvas.style.height = h + 'px';
             
             // Ajouter l'interaction au survol avec pourcentage
             addCanvasHoverEffectWithPercent(canvas, data, leftPad, rightPad, topPad, barHeight, barSpacing, total);
@@ -950,11 +994,16 @@
             const dpr = window.devicePixelRatio || 1;
             const rect = canvas.getBoundingClientRect();
             
-            // Calculer la largeur nécessaire pour afficher toutes les barres lisiblement
-            const minBarWidth = 25;
+            // Obtenir le niveau de zoom pour ce canvas
+            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
+            
+            // Calculer la largeur nécessaire pour afficher toutes les barres lisiblement avec zoom
+            const baseBarWidth = 25;
+            const minBarWidth = baseBarWidth * zoomLevel;
             const minWidth = Math.max(rect.width, values.length * minBarWidth + 80);
             canvas.width = minWidth * dpr;
             canvas.height = rect.height * dpr;
+            canvas.style.width = minWidth + 'px';
             ctx.scale(dpr, dpr);
 
             const w = minWidth;
@@ -1022,11 +1071,21 @@
             const ctx = canvas.getContext('2d');
             const dpr = window.devicePixelRatio || 1;
             const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width * dpr;
+            
+            // Obtenir le niveau de zoom pour ce canvas
+            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
+            
+            // Calculer la largeur nécessaire avec le zoom
+            const baseMinWidth = 25;
+            const minPointSpacing = baseMinWidth * zoomLevel;
+            const minWidth = Math.max(rect.width, values.length * minPointSpacing + 120);
+            
+            canvas.width = minWidth * dpr;
             canvas.height = rect.height * dpr;
+            canvas.style.width = minWidth + 'px';
             ctx.scale(dpr, dpr);
 
-            const w = rect.width;
+            const w = minWidth;
             const h = rect.height;
             const pad = 60;
             const stepX = (w - pad * 2) / (values.length - 1 || 1);
@@ -1211,7 +1270,9 @@
                 .sort((a, b) => b[1] - a[1])
                 .map(([artist, count]) => ({ label: artist, value: count }));
             chartsData.artists = allArtists;
-            drawHorizontalBar(document.getElementById('chartArtists'), allArtists, '#ff6b6b');
+            const limitedArtists = allArtists.slice(0, displayLimits.artists);
+            document.getElementById('artistsCount').textContent = `(${limitedArtists.length}/${allArtists.length})`;
+            drawHorizontalBar(document.getElementById('chartArtists'), limitedArtists, '#ff6b6b');
 
             // Graphique des albums par artiste
             const artistAlbumsData = Object.entries(artistAlbumsMap)
@@ -1220,13 +1281,18 @@
                     value: albums.size 
                 }))
                 .sort((a, b) => b.value - a.value);
-            drawHorizontalBar(document.getElementById('chartAlbumsByArtist'), artistAlbumsData, '#a78bfa');
+            chartsData.albums = artistAlbumsData;
+            const limitedAlbums = artistAlbumsData.slice(0, displayLimits.albums);
+            document.getElementById('albumsCount').textContent = `(${limitedAlbums.length}/${artistAlbumsData.length})`;
+            drawHorizontalBar(document.getElementById('chartAlbumsByArtist'), limitedAlbums, '#a78bfa');
 
             const topGenres = Object.entries(genresMap)
                 .sort((a, b) => b[1] - a[1])
                 .map(([genre, count]) => ({ label: genre, value: count }));
             chartsData.genres = topGenres;
-            drawHorizontalBarWithPercent(document.getElementById('chartGenres'), topGenres, '#4ecdc4');
+            const limitedGenres = topGenres.slice(0, displayLimits.genres);
+            document.getElementById('genresCount').textContent = `(${limitedGenres.length}/${topGenres.length})`;
+            drawHorizontalBarWithPercent(document.getElementById('chartGenres'), limitedGenres, '#4ecdc4');
 
             const years = Object.keys(yearsMap).sort((a, b) => parseInt(a) - parseInt(b));
             const yearCounts = years.map(y => yearsMap[y]);
