@@ -46,16 +46,13 @@ function durationToSeconds(duration) {
 // Extraire le genre et l'année depuis le HTML de la page
 function extractMetadataFromHTML(html, trackTitle) {
     try {
-        // Extraire l'année depuis les balises meta
         let year = null;
         
-        // Chercher dans music: release_date
         const releaseDateMatch = html.match(/<meta property="music:release_date" content="(\d{4})-/);
         if (releaseDateMatch) {
             year = parseInt(releaseDateMatch[1]);
         }
         
-        // Fallback: chercher dans datePublished du JSON-LD
         if (!year) {
             const datePublishedMatch = html.match(/"datePublished":"(\d{4})-/);
             if (datePublishedMatch) {
@@ -63,7 +60,6 @@ function extractMetadataFromHTML(html, trackTitle) {
             }
         }
         
-        // Fallback: chercher ℗ YYYY ou © YYYY
         if (!year) {
             const copyrightMatch = html.match(/[℗©]\s*(19|20)\d{2}/);
             if (copyrightMatch) {
@@ -71,7 +67,6 @@ function extractMetadataFromHTML(html, trackTitle) {
             }
         }
         
-        // Extraire le genre depuis le JSON-LD schema
         let genre = 'Non spécifié';
         const schemaMatch = html.match(/<script id="schema: song" type="application\/ld\+json">([\s\S]*?)<\/script>/);
         
@@ -79,7 +74,6 @@ function extractMetadataFromHTML(html, trackTitle) {
             try {
                 const schema = JSON.parse(schemaMatch[1]);
                 if (schema.audio && schema.audio.genre && Array.isArray(schema.audio. genre)) {
-                    // Prendre le premier genre qui n'est pas "Musique"
                     const validGenres = schema.audio.genre.filter(g => g !== 'Musique' && g !== 'Music');
                     if (validGenres.length > 0) {
                         genre = validGenres[0];
@@ -93,15 +87,74 @@ function extractMetadataFromHTML(html, trackTitle) {
         return { genre, year };
     } catch (e) {
         console.error(`  ❌ Erreur extraction métadonnées pour ${trackTitle}:`, e.message);
-        return { genre:  'Non spécifié', year: null };
+        return { genre: 'Non spécifié', year: null };
     }
 }
 
+// Nettoyer les doublons dans les données existantes
+function cleanDuplicates(data) {
+    console.log('');
+    console.log('═══════════════════════════════════════');
+    console.log('🧹 NETTOYAGE DES DOUBLONS');
+    console.log('═══════════════════════════════════════');
+    
+    const seen = new Set();
+    const uniqueTracks = [];
+    let duplicatesCount = 0;
+
+    data.tracks.forEach(track => {
+        const key = `${track.title}|||${track.artist}`;
+        
+        if (! seen.has(key)) {
+            seen.add(key);
+            uniqueTracks.push(track);
+        } else {
+            duplicatesCount++;
+            if (duplicatesCount <= 5) {
+                console. log(`❌ Doublon supprimé: "${track.title}" - ${track.artist}`);
+            }
+        }
+    });
+
+    if (duplicatesCount > 5) {
+        console.log(`...  et ${duplicatesCount - 5} autres doublons`);
+    }
+
+    // Réassigner les positions
+    uniqueTracks.forEach((track, index) => {
+        track.position = index + 1;
+    });
+
+    console.log(`📊 Pistes avant:  ${data.tracks.length}`);
+    console.log(`📊 Pistes après: ${uniqueTracks.length}`);
+    console.log(`🗑️  Doublons supprimés: ${duplicatesCount}`);
+    console.log('═══════════════════════════════════════');
+    console.log('');
+
+    return {
+        name: data.name,
+        description: data.description,
+        tracks: uniqueTracks
+    };
+}
+
 async function scrapePlaylist() {
-    console.log('🚀 Lancement du scraper Apple Music amélioré...');
+    console.log('🚀 Lancement du scraper Apple Music - PLAYLIST 2000+ TITRES');
+    console.log('⏱️  MODE SÉCURISÉ :  Délais augmentés pour éviter le blocage');
     console.log(`📝 URL:  ${PLAYLIST_URL}`);
 
-    const existingData = loadExistingData();
+    let existingData = loadExistingData();
+    
+    // Nettoyer les doublons au démarrage
+    if (existingData.tracks.length > 0) {
+        const beforeClean = existingData.tracks.length;
+        existingData = cleanDuplicates(existingData);
+        
+        if (existingData.tracks.length < beforeClean) {
+            saveProgress(existingData);
+        }
+    }
+    
     const startPosition = existingData.tracks.length;
     console.log(`🔄 Reprise depuis la piste ${startPosition + 1}`);
 
@@ -138,37 +191,54 @@ async function scrapePlaylist() {
         });
         
         console.log('📄 Chargement de la page Apple Music...');
-        await page.goto(PLAYLIST_URL, { 
+        await page. goto(PLAYLIST_URL, { 
             waitUntil: 'domcontentloaded',
             timeout: 90000 
         });
 
-        await randomDelay(3000, 5000);
-        await page.mouse.move(100, 100);
-        await randomDelay(500, 1000);
-        await page.mouse.move(500, 300);
+        // ✅ Délai initial plus long pour bien charger la page
+        await randomDelay(5000, 8000);
         
-        // Scroll progressif
-        console.log('📜 Scroll progressif pour charger toutes les pistes...');
-        let previousHeight = 0;
+        // Mouvement souris naturel
+        await page.mouse. move(100, 100);
+        await randomDelay(800, 1500);
+        await page.mouse.move(500, 300);
+        await randomDelay(500, 1000);
+        
+        // ✅ SCROLL ULTRA SÉCURISÉ POUR 2000+ PISTES
+        console.log('📜 Scroll progressif et sécurisé pour charger 2000+ pistes...');
+        console.log('⚠️  Cela peut prendre 20-30 minutes, soyez patient ! ');
+        console.log('💡 Délais augmentés pour éviter la détection');
+        
+        let previousElementCount = 0;
         let stableCount = 0;
         let totalScrolls = 0;
-        const maxStable = 5;
-        const maxScrolls = 100;
+        const maxStable = 20; // ✅ Très patient avant de conclure
+        const maxScrolls = 800; // ✅ Jusqu'à 800 scrolls max
+        const targetTracks = 2000; // ✅ Objectif 2000 pistes
 
         while (stableCount < maxStable && totalScrolls < maxScrolls) {
-            const currentHeight = await page.evaluate(() => document.body.scrollHeight);
+            const currentElementCount = await page.evaluate(() => {
+                return document.querySelectorAll('div[role="row"]').length;
+            });
             
-            if (currentHeight === previousHeight) {
+            // Si on a atteint ou dépassé l'objectif
+            if (currentElementCount >= targetTracks) {
+                console. log(`🎯 Objectif atteint !  ${currentElementCount} pistes chargées`);
+                break;
+            }
+            
+            if (currentElementCount === previousElementCount) {
                 stableCount++;
             } else {
                 stableCount = 0;
             }
             
-            previousHeight = currentHeight;
+            previousElementCount = currentElementCount;
             totalScrolls++;
             
-            const scrollAmount = 250 + Math.random() * 400;
+            // ✅ Scroll modéré et naturel
+            const scrollAmount = 350 + Math.random() * 450; // 350-800px
             await page.evaluate((amount) => {
                 window.scrollBy({
                     top: amount,
@@ -176,24 +246,54 @@ async function scrapePlaylist() {
                 });
             }, scrollAmount);
             
-            await randomDelay(1200, 2500);
+            // ✅ DÉLAI AUGMENTÉ :  2-4 secondes entre chaque scroll
+            await randomDelay(2000, 4000);
             
-            if (totalScrolls % 10 === 0) {
-                console.log(`📊 Scroll ${totalScrolls}:  Hauteur ${currentHeight}px (stable: ${stableCount}/${maxStable})`);
+            // Affichage tous les 5 scrolls
+            if (totalScrolls % 5 === 0) {
+                const progress = ((currentElementCount / targetTracks) * 100).toFixed(1);
+                const estimatedMinutes = Math.ceil((targetTracks - currentElementCount) / (currentElementCount / totalScrolls) * 3 / 60);
+                console.log(`📊 Scroll ${totalScrolls}:  ${currentElementCount}/${targetTracks} pistes (${progress}%) | Stable: ${stableCount}/${maxStable} | ~${estimatedMinutes}min restantes`);
             }
             
+            // ✅ Mouvement souris plus fréquent et naturel
             if (totalScrolls % 3 === 0) {
                 const x = 200 + Math.random() * 800;
                 const y = 200 + Math.random() * 400;
                 await page.mouse. move(x, y);
+                await randomDelay(500, 1000);
+            }
+
+            // ✅ Pause longue tous les 50 scrolls (simulation d'une vraie personne)
+            if (totalScrolls % 50 === 0) {
+                console.log(`⏸️  Pause de 10-15 secondes (simulation comportement humain)... `);
+                await randomDelay(10000, 15000);
+            }
+
+            // ✅ Scroll jusqu'en bas de temps en temps pour forcer le chargement
+            if (totalScrolls % 30 === 0) {
+                await page.evaluate(() => window.scrollTo(0, document. body.scrollHeight));
+                await randomDelay(3000, 5000);
             }
         }
 
+        const finalElementCount = await page.evaluate(() => {
+            return document.querySelectorAll('div[role="row"]').length;
+        });
+
+        console.log('');
         console.log(`✅ Scroll terminé après ${totalScrolls} scrolls`);
-        await randomDelay(2000, 3000);
+        console.log(`📊 Total éléments chargés: ${finalElementCount}/${targetTracks}`);
+        
+        if (finalElementCount < targetTracks) {
+            console.log(`⚠️  Attention:  seulement ${finalElementCount} pistes chargées sur ${targetTracks} attendues`);
+            console.log(`💡 Apple Music peut limiter le chargement.  Relancer le script pour continuer. `);
+        }
+        
+        await randomDelay(3000, 5000);
 
         await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        await randomDelay(1000, 2000);
+        await randomDelay(2000, 3000);
 
         console.log('🔍 Extraction des informations de la playlist...');
         
@@ -206,12 +306,12 @@ async function scrapePlaylist() {
                           document.querySelector('[class*="product-header__description"]');
             
             return {
-                name: titleEl ?  titleEl.textContent.trim() : 'ONE',
-                description: descEl ? descEl.textContent.trim() : 'Playlist générée automatiquement'
+                name: titleEl ?  titleEl.textContent. trim() : 'ONE',
+                description: descEl ?  descEl.textContent.trim() : 'Playlist générée automatiquement'
             };
         });
 
-        console.log(`📝 Playlist:  ${playlistInfo.name}`);
+        console.log(`📝 Playlist: ${playlistInfo.name}`);
 
         console.log('🔍 Recherche du sélecteur de pistes...');
         const selectors = [
@@ -237,18 +337,26 @@ async function scrapePlaylist() {
             }
         }
 
-        if (!foundSelector) {
+        if (! foundSelector) {
             throw new Error('Aucun sélecteur de piste trouvé sur la page');
         }
 
         console.log('🎵 Extraction des pistes...');
+        console.log(`🔍 DEBUG: Nombre de pistes existantes à skip: ${existingData.tracks. length}`);
+        
         const basicTracks = await page.evaluate((selector, existingCount) => {
             const tracks = [];
             const elements = document.querySelectorAll(selector);
             
-            console.log(`Analyse de ${elements.length} éléments`);
+            console.log(`Analyse de ${elements.length} éléments HTML trouvés`);
+            console.log(`Skip des ${existingCount} premières pistes`);
 
             elements.forEach((el, index) => {
+                // Skip des pistes déjà extraites
+                if (index < existingCount) {
+                    return;
+                }
+
                 try {
                     let titleEl = el.querySelector('[class*="song-name"]') ||
                                  el.querySelector('[data-testid="song-name"]') ||
@@ -259,68 +367,78 @@ async function scrapePlaylist() {
                     let artistEl = el.querySelector('[class*="by-line"]') ||
                                   el.querySelector('[class*="artist"]') ||
                                   el. querySelector('[data-testid="artist"]') ||
-                                  el.querySelector('a[href*="/artist/"]');
+                                  el. querySelector('a[href*="/artist/"]');
 
                     let durationEl = el.querySelector('[class*="duration"]') ||
                                     el.querySelector('time') ||
                                     el. querySelector('[data-testid="duration"]');
 
-                    // Chercher le lien vers la page du morceau
                     let linkEl = el.querySelector('a[href*="/song/"]');
                     let songUrl = linkEl ? linkEl.href : null;
 
                     if (titleEl && titleEl.textContent.trim()) {
-                        const title = titleEl.textContent. trim();
-                        const artist = artistEl ? artistEl.textContent.trim() : 'Artiste inconnu';
-                        const duration = durationEl ? durationEl.textContent.trim() : '0:00';
+                        const title = titleEl.textContent.trim();
+                        const artist = artistEl ? artistEl. textContent.trim() : 'Artiste inconnu';
+                        const duration = durationEl ? durationEl. textContent.trim() : '0:00';
 
-                        const isDuplicate = tracks.some(t => 
-                            t.title === title && t.artist === artist
-                        );
-
-                        if (! isDuplicate) {
-                            tracks.push({
-                                position: existingCount + tracks.length + 1,
-                                title:  title,
-                                artist: artist,
-                                duration: duration,
-                                durationSec: 0,
-                                genre: 'Non spécifié',
-                                year: new Date().getFullYear(),
-                                songUrl: songUrl
-                            });
-                        }
+                        tracks.push({
+                            position: index + 1,
+                            title: title,
+                            artist: artist,
+                            duration: duration,
+                            durationSec: 0,
+                            genre: 'Non spécifié',
+                            year: new Date().getFullYear(),
+                            songUrl: songUrl
+                        });
                     }
                 } catch (e) {
                     console.error(`Erreur extraction piste ${index}:`, e.message);
                 }
             });
 
+            console.log(`🎯 Total nouvelles pistes extraites: ${tracks.length}`);
             return tracks;
-        }, foundSelector, existingData. tracks. length);
+        }, foundSelector, existingData.tracks. length);
 
-        console.log(`✅ ${basicTracks.length} pistes extraites`);
+        console.log(`✅ ${basicTracks.length} pistes brutes extraites`);
+
+        // Filtrer les doublons
+        const existingTitles = new Set(
+            existingData.tracks.map(t => `${t.title}|||${t.artist}`)
+        );
+        
+        const newTracks = basicTracks.filter(track => {
+            const key = `${track.title}|||${track.artist}`;
+            return !existingTitles.has(key);
+        });
+
+        console.log(`✅ ${newTracks.length} pistes réellement nouvelles après déduplication`);
 
         // Calculer durationSec
-        basicTracks.forEach(track => {
+        newTracks.forEach(track => {
             track.durationSec = durationToSeconds(track.duration);
         });
 
         // Enrichir les métadonnées
-        if (basicTracks.length > 0) {
+        if (newTracks.length > 0) {
             console.log('');
             console.log('═══════════════════════════════════════');
             console.log('🔍 ENRICHISSEMENT DES MÉTADONNÉES');
             console.log('═══════════════════════════════════════');
-            console.log(`📊 Nouvelles pistes: ${basicTracks.length}`);
+            console.log(`📊 Nouvelles pistes: ${newTracks.length}`);
+            console.log('⏱️  MODE SÉCURISÉ : 3-6 secondes entre chaque piste');
+            console.log('⚠️  Pour 2000 pistes, cela peut prendre 3-4 heures ! ');
+            console.log('💡 Le script sauvegarde tous les 5 pistes');
             console.log('');
 
             let enrichedCount = 0;
+            const startTime = Date.now();
 
-            for (let i = 0; i < basicTracks.length; i++) {
-                const track = basicTracks[i];
+            for (let i = 0; i < newTracks.length; i++) {
+                const track = newTracks[i];
                 
-                console.log(`[${i + 1}/${basicTracks.length}] 🎵 "${track.title}" - ${track.artist}`);
+                console.log(`[${i + 1}/${newTracks.length}] 🎵 "${track.title}" - ${track. artist}`);
                 
                 try {
                     if (track.songUrl) {
@@ -330,15 +448,14 @@ async function scrapePlaylist() {
                             waitUntil: 'domcontentloaded', 
                             timeout: 30000 
                         });
-                        await randomDelay(1000, 2000);
+                        
+                        // ✅ DÉLAI AUGMENTÉ : 2-4 secondes après chargement page
+                        await randomDelay(2000, 4000);
 
-                        // Récupérer le HTML complet de la page
                         const html = await page.content();
-
-                        // Extraire les métadonnées du HTML
                         const metadata = extractMetadataFromHTML(html, track.title);
 
-                        if (metadata.genre && metadata.genre !== 'Non spécifié') {
+                        if (metadata. genre && metadata.genre !== 'Non spécifié') {
                             track.genre = metadata.genre;
                         }
 
@@ -356,49 +473,80 @@ async function scrapePlaylist() {
                         console.log(`  ❌ Pas d'URL disponible`);
                     }
 
-                    await randomDelay(800, 1500);
+                    // ✅ DÉLAI AUGMENTÉ entre chaque piste :  3-6 secondes
+                    await randomDelay(3000, 6000);
+
+                    // ✅ Pause longue tous les 20 pistes
+                    if ((i + 1) % 20 === 0) {
+                        console.log(`⏸️  Pause de 15-20 secondes (protection anti-blocage)...`);
+                        await randomDelay(15000, 20000);
+                    }
 
                 } catch (e) {
                     console.error(`  ❌ Erreur:  ${e.message}`);
+                    // ✅ En cas d'erreur, pause plus longue
+                    await randomDelay(5000, 8000);
                 }
 
-                // Sauvegarder tous les 10 pistes
-                if ((i + 1) % 10 === 0) {
+                // ✅ Sauvegarder tous les 5 pistes (au lieu de 10)
+                if ((i + 1) % 5 === 0) {
                     const tempData = {
                         name:  playlistInfo.name,
                         description: playlistInfo.description,
-                        tracks: [... existingData.tracks, ...basicTracks. slice(0, i + 1)]
+                        tracks: [... existingData.tracks, ...newTracks. slice(0, i + 1)]
                     };
-                    // Nettoyer songUrl avant de sauvegarder
                     tempData.tracks.forEach(t => delete t.songUrl);
                     saveProgress(tempData);
+                    
+                    // Estimation du temps restant
+                    const elapsed = Date.now() - startTime;
+                    const avgTimePerTrack = elapsed / (i + 1);
+                    const remaining = (newTracks.length - (i + 1)) * avgTimePerTrack;
+                    const remainingMinutes = Math.ceil(remaining / 60000);
+                    
+                    const progress = ((i + 1) / newTracks.length * 100).toFixed(1);
+                    console.log(`📊 Progression: ${progress}% | Enrichies: ${enrichedCount}/${i + 1} | ~${remainingMinutes}min restantes`);
                 }
             }
             
             console.log('');
+            console.log('══════════════════════════��════════════');
+            console.log(`✅ Enrichissement:  ${enrichedCount}/${newTracks.length} pistes`);
             console.log('═══════════════════════════════════════');
-            console.log(`✅ Enrichissement:  ${enrichedCount}/${basicTracks.length} pistes`);
-            console.log('═══════════════════════════════════════');
+        } else {
+            console.log('');
+            console.log('⚠️  AUCUNE NOUVELLE PISTE À ENRICHIR');
+            console.log('');
+            console.log(`📊 Pistes dans le JSON: ${existingData.tracks. length}`);
+            console.log(`📊 Pistes sur la page: ${finalElementCount}`);
+            console.log('');
+            if (existingData.tracks.length >= finalElementCount) {
+                console.log('✅ Toutes les pistes chargées ont été extraites ! ');
+                console.log('💡 Si < 2000, relancer pour charger plus de pistes');
+            } else {
+                console.log('💡 Relancer le script pour continuer l\'extraction');
+            }
+            console.log('');
         }
 
-        // Nettoyer songUrl des tracks avant sauvegarde finale
-        basicTracks.forEach(track => delete track.songUrl);
+        // Nettoyer songUrl
+        newTracks.forEach(track => delete track.songUrl);
 
         const finalData = {
-            name:  playlistInfo.name,
+            name: playlistInfo.name,
             description: playlistInfo.description,
-            tracks: [... existingData.tracks, ...basicTracks]
+            tracks: [... existingData.tracks, ...newTracks]
         };
 
         saveProgress(finalData);
 
         console.log('');
-        console.log('═══════════════════════════════════════');
+        console.log('═���═════════════════════════════════════');
         console.log('✅ EXTRACTION TERMINÉE AVEC SUCCÈS');
         console.log('═══════════════════════════════════════');
         console.log(`📝 Playlist: ${finalData.name}`);
-        console.log(`📊 Total pistes: ${finalData.tracks. length}`);
-        console.log(`🆕 Nouvelles pistes: ${basicTracks.length}`);
+        console.log(`📊 Total pistes:  ${finalData.tracks.length}/2000`);
+        console.log(`🆕 Nouvelles pistes: ${newTracks.length}`);
         console.log(`💾 Fichier:  ${OUTPUT_FILE}`);
         console.log('═══════════════════════════════════════');
 
