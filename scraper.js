@@ -244,8 +244,8 @@ async function scrapePlaylist() {
         let previousHeight = 0;
         let stableCount = 0;
         let totalScrolls = 0;
-        const maxStable = 5;
-        const maxScrolls = 100;
+        const maxStable = 30;
+        const maxScrolls = 500;
 
         while (stableCount < maxStable && totalScrolls < maxScrolls) {
             const currentHeight = await page.evaluate(() => document.body.scrollHeight);
