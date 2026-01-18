@@ -2629,6 +2629,2166 @@
       "durationSec": 232,
       "genre": "Non spécifié",
       "year": 2004
+    },
+    {
+      "position": 302,
+      "title": "Love Me Again John Newman",
+      "artist": "John Newman",
+      "duration": "3:59",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 239
+    },
+    {
+      "position": 303,
+      "title": "Take Her Back The Pigeon Detectives",
+      "artist": "The Pigeon Detectives",
+      "duration": "3:17",
+      "genre": "Non spécifié",
+      "year": 2007,
+      "durationSec": 197
+    },
+    {
+      "position": 304,
+      "title": "Take Me Out Franz Ferdinand",
+      "artist": "Franz Ferdinand",
+      "duration": "3:57",
+      "genre": "Non spécifié",
+      "year": 2004,
+      "durationSec": 237
+    },
+    {
+      "position": 305,
+      "title": "Blood // Water grandson",
+      "artist": "grandson",
+      "duration": "3:36",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 216
+    },
+    {
+      "position": 306,
+      "title": "It Was a Good Day  Ice Cube",
+      "artist": "Ice Cube",
+      "duration": "4:20",
+      "genre": "Non spécifié",
+      "year": 1992,
+      "durationSec": 260
+    },
+    {
+      "position": 307,
+      "title": "High Enough K.Flay",
+      "artist": "K.Flay",
+      "duration": "3:51",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 231
+    },
+    {
+      "position": 308,
+      "title": "Fortunate Son Creedence Clearwater Revival",
+      "artist": "Creedence Clearwater Revival",
+      "duration": "2:21",
+      "genre": "Non spécifié",
+      "year": 1968,
+      "durationSec": 141
+    },
+    {
+      "position": 309,
+      "title": "Soldier On The Temper Trap",
+      "artist": "The Temper Trap",
+      "duration": "5:58",
+      "genre": "Non spécifié",
+      "year": 2009,
+      "durationSec": 358
+    },
+    {
+      "position": 310,
+      "title": "The Uruk-hai Howard Shore",
+      "artist": "Howard Shore",
+      "duration": "2:58",
+      "genre": "Non spécifié",
+      "year": 2002,
+      "durationSec": 178
+    },
+    {
+      "position": 311,
+      "title": "Just the Two of Us Bill Withers · Grover Washington, Jr.",
+      "artist": "Bill Withers · Grover Washington, Jr.",
+      "duration": "7:23",
+      "genre": "Non spécifié",
+      "year": 1980,
+      "durationSec": 443
+    },
+    {
+      "position": 312,
+      "title": "Song of Storms [From Tloz Original Game Soundtrack] [Epic Version] Jafet Meza",
+      "artist": "Jafet Meza",
+      "duration": "3:53",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 233
+    },
+    {
+      "position": 314,
+      "title": "Concerning Hobbits Howard Shore",
+      "artist": "Howard Shore",
+      "duration": "2:55",
+      "genre": "Non spécifié",
+      "year": 2001,
+      "durationSec": 175
+    },
+    {
+      "position": 315,
+      "title": "Those Eyes New West",
+      "artist": "New West",
+      "duration": "3:40",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 220
+    },
+    {
+      "position": 316,
+      "title": "Ocarina of Time (From \"the Legend of Zelda\") Geek Music",
+      "artist": "Geek Music",
+      "duration": "2:49",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 169
+    },
+    {
+      "position": 317,
+      "title": "The Legend of Zelda - Main Theme Geek Music",
+      "artist": "Geek Music",
+      "duration": "2:49",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 169
+    },
+    {
+      "position": 318,
+      "title": "Lost Woods (From \"Legend of Zelda: Ocarina of Time\") OST Remastered",
+      "artist": "OST Remastered",
+      "duration": "3:20",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 200
+    },
+    {
+      "position": 319,
+      "title": "Boulevard of Broken Dreams  Green Day",
+      "artist": "Green Day",
+      "duration": "4:21",
+      "genre": "Non spécifié",
+      "year": 2004,
+      "durationSec": 261
+    },
+    {
+      "position": 320,
+      "title": "J'ai demandé à la lune Indochine",
+      "artist": "Indochine",
+      "duration": "3:29",
+      "genre": "Non spécifié",
+      "year": 2002,
+      "durationSec": 209
+    },
+    {
+      "position": 321,
+      "title": "This Fffire Franz Ferdinand",
+      "artist": "Franz Ferdinand",
+      "duration": "3:38",
+      "genre": "Non spécifié",
+      "year": 2004,
+      "durationSec": 218
+    },
+    {
+      "position": 322,
+      "title": "Let You Down Dawid Podsiadło",
+      "artist": "Dawid Podsiadło",
+      "duration": "3:47",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 227
+    },
+    {
+      "position": 323,
+      "title": "Baby (feat. Coasting)  Roderick Porter",
+      "artist": "Roderick Porter",
+      "duration": "2:29",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 149
+    },
+    {
+      "position": 324,
+      "title": "Never Let Me Down Tom Gregory · VIZE",
+      "artist": "Tom Gregory · VIZE",
+      "duration": "2:33",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 153
+    },
+    {
+      "position": 325,
+      "title": "Pong Dance  Vigiland",
+      "artist": "Vigiland",
+      "duration": "2:37",
+      "genre": "Non spécifié",
+      "year": 2016,
+      "durationSec": 157
+    },
+    {
+      "position": 326,
+      "title": "I Got Bitches  A2M",
+      "artist": "A2M",
+      "duration": "3:40",
+      "genre": "Non spécifié",
+      "year": 2014,
+      "durationSec": 220
+    },
+    {
+      "position": 327,
+      "title": "Vacation  Dirty Heads",
+      "artist": "Dirty Heads",
+      "duration": "3:29",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 209
+    },
+    {
+      "position": 328,
+      "title": "Psycho!  MASN",
+      "artist": "MASN",
+      "duration": "3:17",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 197
+    },
+    {
+      "position": 329,
+      "title": "Need U JOYCA",
+      "artist": "JOYCA",
+      "duration": "2:57",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 177
+    },
+    {
+      "position": 330,
+      "title": "Ievan Polkka Korpiklaani",
+      "artist": "Korpiklaani",
+      "duration": "3:08",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 188
+    },
+    {
+      "position": 331,
+      "title": "Sur la route de memphis Eddy Mitchell",
+      "artist": "Eddy Mitchell",
+      "duration": "2:55",
+      "genre": "Non spécifié",
+      "year": 1976,
+      "durationSec": 175
+    },
+    {
+      "position": 332,
+      "title": "I Will Survive Gloria Gaynor",
+      "artist": "Gloria Gaynor",
+      "duration": "7:56",
+      "genre": "Non spécifié",
+      "year": 1978,
+      "durationSec": 476
+    },
+    {
+      "position": 333,
+      "title": "Memories Maroon 5",
+      "artist": "Maroon 5",
+      "duration": "3:09",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 189
+    },
+    {
+      "position": 334,
+      "title": "Cry for the Earth Bounds Ensiferum",
+      "artist": "Ensiferum",
+      "duration": "7:31",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 451
+    },
+    {
+      "position": 335,
+      "title": "Lost on You LP",
+      "artist": "LP",
+      "duration": "4:27",
+      "genre": "Non spécifié",
+      "year": 2009,
+      "durationSec": 267
+    },
+    {
+      "position": 336,
+      "title": "Numb LINKIN PARK",
+      "artist": "LINKIN PARK",
+      "duration": "3:07",
+      "genre": "Non spécifié",
+      "year": 2003,
+      "durationSec": 187
+    },
+    {
+      "position": 337,
+      "title": "Stolen Dance Milky Chance",
+      "artist": "Milky Chance",
+      "duration": "5:13",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 313
+    },
+    {
+      "position": 338,
+      "title": "death bed - bonus remix Powfu · beabadoobee · blink-182",
+      "artist": "Powfu · beabadoobee · blink-182",
+      "duration": "2:13",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 133
+    },
+    {
+      "position": 339,
+      "title": "White Oak dryhope",
+      "artist": "dryhope",
+      "duration": "1:58",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 118
+    },
+    {
+      "position": 340,
+      "title": "Ride twenty one pilots",
+      "artist": "twenty one pilots",
+      "duration": "3:34",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 214
+    },
+    {
+      "position": 341,
+      "title": "Sunflower (Spider-Man: Into the Spider-Verse) Post Malone · Swae Lee",
+      "artist": "Post Malone · Swae Lee",
+      "duration": "2:38",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 158
+    },
+    {
+      "position": 342,
+      "title": "Eternal Youth Růde",
+      "artist": "Růde",
+      "duration": "3:25",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 205
+    },
+    {
+      "position": 343,
+      "title": "Take on Me Ashley Johnson · Chris Rondinella",
+      "artist": "Ashley Johnson · Chris Rondinella",
+      "duration": "3:51",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 231
+    },
+    {
+      "position": 344,
+      "title": "With or Without You U2",
+      "artist": "U2",
+      "duration": "4:55",
+      "genre": "Non spécifié",
+      "year": 1987,
+      "durationSec": 295
+    },
+    {
+      "position": 345,
+      "title": "7 Years Lukas Graham",
+      "artist": "Lukas Graham",
+      "duration": "3:57",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 237
+    },
+    {
+      "position": 346,
+      "title": "Sway Michael Bublé",
+      "artist": "Michael Bublé",
+      "duration": "3:08",
+      "genre": "Non spécifié",
+      "year": 2003,
+      "durationSec": 188
+    },
+    {
+      "position": 347,
+      "title": "Way Up Jaden",
+      "artist": "Jaden",
+      "duration": "2:33",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 153
+    },
+    {
+      "position": 348,
+      "title": "Young, Wild & Free (feat. Bruno Mars)  Snoop Dogg · Wiz Khalifa",
+      "artist": "Snoop Dogg · Wiz Khalifa",
+      "duration": "3:27",
+      "genre": "Non spécifié",
+      "year": 2011,
+      "durationSec": 207
+    },
+    {
+      "position": 349,
+      "title": "Break My Stride Matthew Wilder",
+      "artist": "Matthew Wilder",
+      "duration": "3:04",
+      "genre": "Non spécifié",
+      "year": 1983,
+      "durationSec": 184
+    },
+    {
+      "position": 350,
+      "title": "The Passenger Iggy Pop",
+      "artist": "Iggy Pop",
+      "duration": "4:42",
+      "genre": "Non spécifié",
+      "year": 1977,
+      "durationSec": 282
+    },
+    {
+      "position": 351,
+      "title": "Sultans of Swing Dire Straits",
+      "artist": "Dire Straits",
+      "duration": "5:48",
+      "genre": "Non spécifié",
+      "year": 1978,
+      "durationSec": 348
+    },
+    {
+      "position": 352,
+      "title": "Hotel California (Remastered) Eagles",
+      "artist": "Eagles",
+      "duration": "6:31",
+      "genre": "Non spécifié",
+      "year": 1976,
+      "durationSec": 391
+    },
+    {
+      "position": 353,
+      "title": "September Earth, Wind & Fire",
+      "artist": "Earth, Wind & Fire",
+      "duration": "3:35",
+      "genre": "Non spécifié",
+      "year": 1978,
+      "durationSec": 215
+    },
+    {
+      "position": 354,
+      "title": "Stayin' Alive Bee Gees",
+      "artist": "Bee Gees",
+      "duration": "4:43",
+      "genre": "Non spécifié",
+      "year": 1977,
+      "durationSec": 283
+    },
+    {
+      "position": 355,
+      "title": "Hold the Line Toto",
+      "artist": "Toto",
+      "duration": "3:55",
+      "genre": "Non spécifié",
+      "year": 1978,
+      "durationSec": 235
+    },
+    {
+      "position": 356,
+      "title": "Killer Queen Queen",
+      "artist": "Queen",
+      "duration": "3:00",
+      "genre": "Non spécifié",
+      "year": 1974,
+      "durationSec": 180
+    },
+    {
+      "position": 358,
+      "title": "Mr. Blue Sky Electric Light Orchestra",
+      "artist": "Electric Light Orchestra",
+      "duration": "5:02",
+      "genre": "Non spécifié",
+      "year": 1977,
+      "durationSec": 302
+    },
+    {
+      "position": 359,
+      "title": "The Last of Us Gustavo Santaolalla",
+      "artist": "Gustavo Santaolalla",
+      "duration": "3:03",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 183
+    },
+    {
+      "position": 360,
+      "title": "Take me to Church YABØII",
+      "artist": "YABØII",
+      "duration": "4:04",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 244
+    },
+    {
+      "position": 361,
+      "title": "Losing My Religion R.E.M.",
+      "artist": "R.E.M.",
+      "duration": "4:28",
+      "genre": "Non spécifié",
+      "year": 1991,
+      "durationSec": 268
+    },
+    {
+      "position": 362,
+      "title": "Panic Room Au/Ra",
+      "artist": "Au/Ra",
+      "duration": "3:57",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 237
+    },
+    {
+      "position": 364,
+      "title": "Set the Night to Music Starship",
+      "artist": "Starship",
+      "duration": "4:47",
+      "genre": "Non spécifié",
+      "year": 1987,
+      "durationSec": 287
+    },
+    {
+      "position": 365,
+      "title": "I Need a Dollar Aloe Blacc",
+      "artist": "Aloe Blacc",
+      "duration": "4:03",
+      "genre": "Non spécifié",
+      "year": 2010,
+      "durationSec": 243
+    },
+    {
+      "position": 366,
+      "title": "Dance Monkey Tones And I",
+      "artist": "Tones And I",
+      "duration": "3:29",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 209
+    },
+    {
+      "position": 367,
+      "title": "Sing for the Moment  Eminem",
+      "artist": "Eminem",
+      "duration": "5:39",
+      "genre": "Non spécifié",
+      "year": 2002,
+      "durationSec": 339
+    },
+    {
+      "position": 368,
+      "title": "The Wall  PatrickReza",
+      "artist": "PatrickReza",
+      "duration": "3:16",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 196
+    },
+    {
+      "position": 369,
+      "title": "Love Is a Bitch  Two Feet",
+      "artist": "Two Feet",
+      "duration": "3:01",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 181
+    },
+    {
+      "position": 370,
+      "title": "I Feel Like I'm Drowning Two Feet",
+      "artist": "Two Feet",
+      "duration": "3:05",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 185
+    },
+    {
+      "position": 371,
+      "title": "bellyache Billie Eilish",
+      "artist": "Billie Eilish",
+      "duration": "2:59",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 179
+    },
+    {
+      "position": 372,
+      "title": "Counting Stars OneRepublic",
+      "artist": "OneRepublic",
+      "duration": "4:17",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 257
+    },
+    {
+      "position": 373,
+      "title": "Beggin' Måneskin",
+      "artist": "Måneskin",
+      "duration": "3:31",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 211
+    },
+    {
+      "position": 374,
+      "title": "I Still Haven't Found What I'm Looking For U2",
+      "artist": "U2",
+      "duration": "4:37",
+      "genre": "Non spécifié",
+      "year": 1987,
+      "durationSec": 277
+    },
+    {
+      "position": 375,
+      "title": "Love Lost (Piano Version) Mattia Cupelli",
+      "artist": "Mattia Cupelli",
+      "duration": "7:07",
+      "genre": "Non spécifié",
+      "year": 2014,
+      "durationSec": 427
+    },
+    {
+      "position": 376,
+      "title": "Green Lights Aloe Blacc",
+      "artist": "Aloe Blacc",
+      "duration": "2:54",
+      "genre": "Non spécifié",
+      "year": 2010,
+      "durationSec": 174
+    },
+    {
+      "position": 378,
+      "title": "Jungle Emma Louise",
+      "artist": "Emma Louise",
+      "duration": "3:22",
+      "genre": "Non spécifié",
+      "year": 2011,
+      "durationSec": 202
+    },
+    {
+      "position": 379,
+      "title": "Grrrls AViVA",
+      "artist": "AViVA",
+      "duration": "3:48",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 228
+    },
+    {
+      "position": 380,
+      "title": "The Kids Aren't Alright The Offspring",
+      "artist": "The Offspring",
+      "duration": "3:00",
+      "genre": "Non spécifié",
+      "year": 1998,
+      "durationSec": 180
+    },
+    {
+      "position": 381,
+      "title": "Crazy Gnarls Barkley",
+      "artist": "Gnarls Barkley",
+      "duration": "3:02",
+      "genre": "Non spécifié",
+      "year": 2005,
+      "durationSec": 182
+    },
+    {
+      "position": 382,
+      "title": "Livin' On a Prayer Bon Jovi",
+      "artist": "Bon Jovi",
+      "duration": "4:09",
+      "genre": "Non spécifié",
+      "year": 1986,
+      "durationSec": 249
+    },
+    {
+      "position": 383,
+      "title": "Take Me To Church Hozier",
+      "artist": "Hozier",
+      "duration": "4:01",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 241
+    },
+    {
+      "position": 384,
+      "title": "I Ain't Worried OneRepublic",
+      "artist": "OneRepublic",
+      "duration": "2:28",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 148
+    },
+    {
+      "position": 385,
+      "title": "Another One Bites the Dust Queen",
+      "artist": "Queen",
+      "duration": "3:34",
+      "genre": "Non spécifié",
+      "year": 1980,
+      "durationSec": 214
+    },
+    {
+      "position": 386,
+      "title": "Don't Stop Me Now Queen",
+      "artist": "Queen",
+      "duration": "3:29",
+      "genre": "Non spécifié",
+      "year": 1978,
+      "durationSec": 209
+    },
+    {
+      "position": 387,
+      "title": "Dancin (Krono Remix) [feat. Luvli] Aaron Smith",
+      "artist": "Aaron Smith",
+      "duration": "3:18",
+      "genre": "Non spécifié",
+      "year": 2014,
+      "durationSec": 198
+    },
+    {
+      "position": 388,
+      "title": "I Want To Break Free (Single Remix) Queen",
+      "artist": "Queen",
+      "duration": "4:19",
+      "genre": "Non spécifié",
+      "year": 1984,
+      "durationSec": 259
+    },
+    {
+      "position": 389,
+      "title": "The Show Must Go On Queen",
+      "artist": "Queen",
+      "duration": "4:35",
+      "genre": "Non spécifié",
+      "year": 1991,
+      "durationSec": 275
+    },
+    {
+      "position": 390,
+      "title": "Renegades X Ambassadors",
+      "artist": "X Ambassadors",
+      "duration": "3:15",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 195
+    },
+    {
+      "position": 391,
+      "title": "Way Down We Go KALEO",
+      "artist": "KALEO",
+      "duration": "3:39",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 219
+    },
+    {
+      "position": 392,
+      "title": "Stressed Out twenty one pilots",
+      "artist": "twenty one pilots",
+      "duration": "3:22",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 202
+    },
+    {
+      "position": 393,
+      "title": "Don't Stop Believin'  (2022 Remaster) Journey",
+      "artist": "Journey",
+      "duration": "4:09",
+      "genre": "Non spécifié",
+      "year": 1981,
+      "durationSec": 249
+    },
+    {
+      "position": 394,
+      "title": "Everything Black Unlike Pluto · Mike Taylor",
+      "artist": "Unlike Pluto · Mike Taylor",
+      "duration": "3:48",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 228
+    },
+    {
+      "position": 395,
+      "title": "Wasting My Young Years London Grammar",
+      "artist": "London Grammar",
+      "duration": "3:24",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 204
+    },
+    {
+      "position": 396,
+      "title": "Radioactive Imagine Dragons",
+      "artist": "Imagine Dragons",
+      "duration": "3:06",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 186
+    },
+    {
+      "position": 397,
+      "title": "Play with Fire (feat. Yacht Money) Sam Tinnesz",
+      "artist": "Sam Tinnesz",
+      "duration": "3:00",
+      "genre": "Non spécifié",
+      "year": 2017,
+      "durationSec": 180
+    },
+    {
+      "position": 398,
+      "title": "Sweater Weather The Neighbourhood",
+      "artist": "The Neighbourhood",
+      "duration": "4:00",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 240
+    },
+    {
+      "position": 399,
+      "title": "You Shook Me All Night Long AC/DC",
+      "artist": "AC/DC",
+      "duration": "3:30",
+      "genre": "Non spécifié",
+      "year": 1980,
+      "durationSec": 210
+    },
+    {
+      "position": 400,
+      "title": "Still Loving You Scorpions",
+      "artist": "Scorpions",
+      "duration": "6:43",
+      "genre": "Non spécifié",
+      "year": 1984,
+      "durationSec": 403
+    },
+    {
+      "position": 401,
+      "title": "Hysteria Muse",
+      "artist": "Muse",
+      "duration": "3:47",
+      "genre": "Non spécifié",
+      "year": 2003,
+      "durationSec": 227
+    },
+    {
+      "position": 402,
+      "title": "Trampoline SHAED",
+      "artist": "SHAED",
+      "duration": "3:04",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 184
+    },
+    {
+      "position": 403,
+      "title": "U Remind Me USHER",
+      "artist": "USHER",
+      "duration": "4:26",
+      "genre": "Non spécifié",
+      "year": 2001,
+      "durationSec": 266
+    },
+    {
+      "position": 404,
+      "title": "Merry-Go-Round of Life (from 'Howl's Moving Castle') Joe Hisaishi",
+      "artist": "Joe Hisaishi",
+      "duration": "5:13",
+      "genre": "Non spécifié",
+      "year": 2005,
+      "durationSec": 313
+    },
+    {
+      "position": 405,
+      "title": "In the End LINKIN PARK",
+      "artist": "LINKIN PARK",
+      "duration": "3:36",
+      "genre": "Non spécifié",
+      "year": 2000,
+      "durationSec": 216
+    },
+    {
+      "position": 406,
+      "title": "Starfall (Slowed + Reverb) Marc Hanania",
+      "artist": "Marc Hanania",
+      "duration": "3:22",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 202
+    },
+    {
+      "position": 407,
+      "title": "Flowers Need Rain Preston Pablo · Banx & Ranx",
+      "artist": "Preston Pablo · Banx & Ranx",
+      "duration": "2:48",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 168
+    },
+    {
+      "position": 408,
+      "title": "Play the Game Queen",
+      "artist": "Queen",
+      "duration": "3:31",
+      "genre": "Non spécifié",
+      "year": 1980,
+      "durationSec": 211
+    },
+    {
+      "position": 409,
+      "title": "Jump Van Halen",
+      "artist": "Van Halen",
+      "duration": "4:01",
+      "genre": "Non spécifié",
+      "year": 1983,
+      "durationSec": 241
+    },
+    {
+      "position": 410,
+      "title": "La tournée du patron Sébastien Patoche",
+      "artist": "Sébastien Patoche",
+      "duration": "3:36",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 216
+    },
+    {
+      "position": 411,
+      "title": "Li Tourner (feat. Alain Ramanisum & Willy William) [Radio Edit] DJ Assad",
+      "artist": "DJ Assad",
+      "duration": "3:38",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 218
+    },
+    {
+      "position": 412,
+      "title": "La tribu de Dana Manau",
+      "artist": "Manau",
+      "duration": "4:47",
+      "genre": "Non spécifié",
+      "year": 1998,
+      "durationSec": 287
+    },
+    {
+      "position": 413,
+      "title": "Du rhum, des femmes Soldat Louis",
+      "artist": "Soldat Louis",
+      "duration": "3:01",
+      "genre": "Non spécifié",
+      "year": 1988,
+      "durationSec": 181
+    },
+    {
+      "position": 414,
+      "title": "On a soif ! Grand Jojo",
+      "artist": "Grand Jojo",
+      "duration": "3:20",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 200
+    },
+    {
+      "position": 415,
+      "title": "Viens boire un petit coup à la maison Grand Jojo",
+      "artist": "Grand Jojo",
+      "duration": "3:16",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 196
+    },
+    {
+      "position": 416,
+      "title": "Paquito Chocolatero : Dans un verre à ballon Ricoune",
+      "artist": "Ricoune",
+      "duration": "3:59",
+      "genre": "Non spécifié",
+      "year": 2002,
+      "durationSec": 239
+    },
+    {
+      "position": 417,
+      "title": "Les sardines Patrick Sébastien",
+      "artist": "Patrick Sébastien",
+      "duration": "3:54",
+      "genre": "Non spécifié",
+      "year": 2002,
+      "durationSec": 234
+    },
+    {
+      "position": 418,
+      "title": "Les pouces en avant (Et tchic et tchac han han) [Fragmax, Bill Out Remix] Kris Law",
+      "artist": "Kris Law",
+      "duration": "3:18",
+      "genre": "Non spécifié",
+      "year": 2014,
+      "durationSec": 198
+    },
+    {
+      "position": 419,
+      "title": "La bonne du curé Annie Cordy",
+      "artist": "Annie Cordy",
+      "duration": "2:42",
+      "genre": "Non spécifié",
+      "year": 1974,
+      "durationSec": 162
+    },
+    {
+      "position": 420,
+      "title": "De gauche à droite (Valse) Danyel Dorgère et Son Orchestre",
+      "artist": "Danyel Dorgère et Son Orchestre",
+      "duration": "2:56",
+      "genre": "Non spécifié",
+      "year": 2010,
+      "durationSec": 176
+    },
+    {
+      "position": 421,
+      "title": "Ah... Si tu pouvais fermer ta gueule...  Patrick Sébastien",
+      "artist": "Patrick Sébastien",
+      "duration": "3:51",
+      "genre": "Non spécifié",
+      "year": 2008,
+      "durationSec": 231
+    },
+    {
+      "position": 422,
+      "title": "Santiano Les Marins D'Iroise",
+      "artist": "Les Marins D'Iroise",
+      "duration": "3:04",
+      "genre": "Non spécifié",
+      "year": 2011,
+      "durationSec": 184
+    },
+    {
+      "position": 423,
+      "title": "Soirée disco Boris",
+      "artist": "Boris",
+      "duration": "3:43",
+      "genre": "Non spécifié",
+      "year": 1995,
+      "durationSec": 223
+    },
+    {
+      "position": 424,
+      "title": "La Route à 3 Grammes Les Binuchards",
+      "artist": "Les Binuchards",
+      "duration": "3:47",
+      "genre": "Non spécifié",
+      "year": 2007,
+      "durationSec": 227
+    },
+    {
+      "position": 425,
+      "title": "Il Est Des Nôtres Robert Latreille Son Orchestre Et Ses Choeurs",
+      "artist": "Robert Latreille Son Orchestre Et Ses Choeurs",
+      "duration": "3:16",
+      "genre": "Non spécifié",
+      "year": 2003,
+      "durationSec": 196
+    },
+    {
+      "position": 426,
+      "title": "A7  Sokuu",
+      "artist": "Sokuu",
+      "duration": "3:15",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 195
+    },
+    {
+      "position": 427,
+      "title": "Aurores boréales  Sokuu",
+      "artist": "Sokuu",
+      "duration": "3:02",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 182
+    },
+    {
+      "position": 428,
+      "title": "Ce soir là... Seth Sad",
+      "artist": "Seth Sad",
+      "duration": "3:24",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 204
+    },
+    {
+      "position": 429,
+      "title": "Ce soir là... Seth Sad",
+      "artist": "Seth Sad",
+      "duration": "3:24",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 204
+    },
+    {
+      "position": 430,
+      "title": "Une place pour toi  Sokuu",
+      "artist": "Sokuu",
+      "duration": "2:53",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 173
+    },
+    {
+      "position": 431,
+      "title": "Djinn amoureux II  Yuzmv",
+      "artist": "Yuzmv",
+      "duration": "3:06",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 186
+    },
+    {
+      "position": 432,
+      "title": "LESSGUI  Luther",
+      "artist": "Luther",
+      "duration": "2:36",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 156
+    },
+    {
+      "position": 433,
+      "title": "ALAKAZAM  Luther",
+      "artist": "Luther",
+      "duration": "3:05",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 185
+    },
+    {
+      "position": 434,
+      "title": "ALAKAZAM  Luther",
+      "artist": "Luther",
+      "duration": "3:05",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 185
+    },
+    {
+      "position": 435,
+      "title": "PK TU M'APL ?  Luther",
+      "artist": "Luther",
+      "duration": "3:01",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 181
+    },
+    {
+      "position": 436,
+      "title": "PK TU M'APL ?  Luther",
+      "artist": "Luther",
+      "duration": "3:01",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 181
+    },
+    {
+      "position": 437,
+      "title": "BLAKE & MORTIMER  Luther",
+      "artist": "Luther",
+      "duration": "1:40",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 100
+    },
+    {
+      "position": 438,
+      "title": "GARÇON  Luther",
+      "artist": "Luther",
+      "duration": "2:24",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 144
+    },
+    {
+      "position": 439,
+      "title": "Comme une odeur de parfum Karma",
+      "artist": "Karma",
+      "duration": "3:20",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 200
+    },
+    {
+      "position": 440,
+      "title": "Vampire  Yuzmv",
+      "artist": "Yuzmv",
+      "duration": "3:44",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 224
+    },
+    {
+      "position": 441,
+      "title": "Mi amor (feat. Toya)  Yuzmv",
+      "artist": "Yuzmv",
+      "duration": "3:12",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 192
+    },
+    {
+      "position": 442,
+      "title": "Démon solitaire  Sokuu",
+      "artist": "Sokuu",
+      "duration": "2:47",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 167
+    },
+    {
+      "position": 443,
+      "title": "Motel  Ashh",
+      "artist": "Ashh",
+      "duration": "4:01",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 241
+    },
+    {
+      "position": 444,
+      "title": "Même pas un grincement  Ziak",
+      "artist": "Ziak",
+      "duration": "3:45",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 225
+    },
+    {
+      "position": 445,
+      "title": "La vie est moche  Sovajon",
+      "artist": "Sovajon",
+      "duration": "3:23",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 203
+    },
+    {
+      "position": 446,
+      "title": "Mal aimée  Klem Schen",
+      "artist": "Klem Schen",
+      "duration": "2:53",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 173
+    },
+    {
+      "position": 447,
+      "title": "Je M'en Sortirai Pas  Wall.E",
+      "artist": "Wall.E",
+      "duration": "3:18",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 198
+    },
+    {
+      "position": 448,
+      "title": "Astronaute  Fredz",
+      "artist": "Fredz",
+      "duration": "3:27",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 207
+    },
+    {
+      "position": 449,
+      "title": "Astronaute  Fredz",
+      "artist": "Fredz",
+      "duration": "3:27",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 207
+    },
+    {
+      "position": 450,
+      "title": "Laboratoire  Werenoi",
+      "artist": "Werenoi",
+      "duration": "2:42",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 162
+    },
+    {
+      "position": 451,
+      "title": "Egérie Nekfeu",
+      "artist": "Nekfeu",
+      "duration": "3:30",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 210
+    },
+    {
+      "position": 452,
+      "title": "Éternité (feat. Nekfeu)  Jazzy Bazz",
+      "artist": "Jazzy Bazz",
+      "duration": "3:26",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 206
+    },
+    {
+      "position": 453,
+      "title": "Mère Yuzmv",
+      "artist": "Yuzmv",
+      "duration": "3:16",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 196
+    },
+    {
+      "position": 454,
+      "title": "Maladie mentale (feat. 00:60)  Klem Schen",
+      "artist": "Klem Schen",
+      "duration": "3:00",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 180
+    },
+    {
+      "position": 455,
+      "title": "Le bruit des âmes  Tsune",
+      "artist": "Tsune",
+      "duration": "3:50",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 230
+    },
+    {
+      "position": 456,
+      "title": "Survie  Sokuu",
+      "artist": "Sokuu",
+      "duration": "3:05",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 185
+    },
+    {
+      "position": 457,
+      "title": "Ma go  Moji x Sboy",
+      "artist": "Moji x Sboy",
+      "duration": "3:35",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 215
+    },
+    {
+      "position": 458,
+      "title": "Intro  Josman",
+      "artist": "Josman",
+      "duration": "2:27",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 147
+    },
+    {
+      "position": 459,
+      "title": "Rien ressentir  Willyod",
+      "artist": "Willyod",
+      "duration": "2:46",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 166
+    },
+    {
+      "position": 460,
+      "title": "Akuma  6amusic · HMZX · Donguti",
+      "artist": "6amusic · HMZX · Donguti",
+      "duration": "4:45",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 285
+    },
+    {
+      "position": 461,
+      "title": "Aller de l'avant (feat. Rama)  Abcrap",
+      "artist": "Abcrap",
+      "duration": "3:42",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 222
+    },
+    {
+      "position": 462,
+      "title": "Toi  Lycos",
+      "artist": "Lycos",
+      "duration": "2:50",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 170
+    },
+    {
+      "position": 463,
+      "title": "Actrice Fantôme  Suzuya",
+      "artist": "Suzuya",
+      "duration": "2:52",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 172
+    },
+    {
+      "position": 464,
+      "title": "Kraken  Suzuya",
+      "artist": "Suzuya",
+      "duration": "2:27",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 147
+    },
+    {
+      "position": 465,
+      "title": "As It Was Harry Styles",
+      "artist": "Harry Styles",
+      "duration": "2:47",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 167
+    },
+    {
+      "position": 466,
+      "title": "SPECIALZ King Gnu",
+      "artist": "King Gnu",
+      "duration": "3:58",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 238
+    },
+    {
+      "position": 467,
+      "title": "青のすみか Tatsuya Kitani",
+      "artist": "Tatsuya Kitani",
+      "duration": "3:17",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 197
+    },
+    {
+      "position": 468,
+      "title": "Crazy Little Thing Called Love Queen",
+      "artist": "Queen",
+      "duration": "2:48",
+      "genre": "Non spécifié",
+      "year": 1979,
+      "durationSec": 168
+    },
+    {
+      "position": 469,
+      "title": "Paint The Town Red  Doja Cat",
+      "artist": "Doja Cat",
+      "duration": "3:51",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 231
+    },
+    {
+      "position": 470,
+      "title": "Il en faut peu pour être heureux Jean Stout · Pascal Bressy",
+      "artist": "Jean Stout · Pascal Bressy",
+      "duration": "4:42",
+      "genre": "Non spécifié",
+      "year": 2002,
+      "durationSec": 282
+    },
+    {
+      "position": 471,
+      "title": "Neon Sign (Rogue VHS Remix) Carbon Killer",
+      "artist": "Carbon Killer",
+      "duration": "3:39",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 219
+    },
+    {
+      "position": 472,
+      "title": "LA VITRE Sokuu",
+      "artist": "Sokuu",
+      "duration": "2:31",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 151
+    },
+    {
+      "position": 473,
+      "title": "Everybody Wants To Rule the World Tears for Fears",
+      "artist": "Tears for Fears",
+      "duration": "4:11",
+      "genre": "Non spécifié",
+      "year": 1985,
+      "durationSec": 251
+    },
+    {
+      "position": 474,
+      "title": "Strangers Kenya Grace",
+      "artist": "Kenya Grace",
+      "duration": "2:52",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 172
+    },
+    {
+      "position": 475,
+      "title": "My War (From \"Attack on Titan\") Miura Jam",
+      "artist": "Miura Jam",
+      "duration": "1:31",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 91
+    },
+    {
+      "position": 476,
+      "title": "Requiem Toundra",
+      "artist": "Toundra",
+      "duration": "5:34",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 334
+    },
+    {
+      "position": 477,
+      "title": "Life Goes On Oliver Tree",
+      "artist": "Oliver Tree",
+      "duration": "2:41",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 161
+    },
+    {
+      "position": 478,
+      "title": "Never Let Me Down Again Depeche Mode",
+      "artist": "Depeche Mode",
+      "duration": "4:48",
+      "genre": "Non spécifié",
+      "year": 1987,
+      "durationSec": 288
+    },
+    {
+      "position": 479,
+      "title": "Bad Passenger (Interlude) Acid Arcade",
+      "artist": "Acid Arcade",
+      "duration": "1:41",
+      "genre": "Non spécifié",
+      "year": 2021,
+      "durationSec": 101
+    },
+    {
+      "position": 480,
+      "title": "Come Prima Tony Dallara",
+      "artist": "Tony Dallara",
+      "duration": "2:56",
+      "genre": "Non spécifié",
+      "year": 1997,
+      "durationSec": 176
+    },
+    {
+      "position": 481,
+      "title": "Misty Mountains Richard Armitage · The Dwarf Cast",
+      "artist": "Richard Armitage · The Dwarf Cast",
+      "duration": "1:42",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 102
+    },
+    {
+      "position": 482,
+      "title": "Gravity Falls Theme (From \"Gravity Falls\") Anime Kei",
+      "artist": "Anime Kei",
+      "duration": "0:41",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 41
+    },
+    {
+      "position": 483,
+      "title": "Champagne & Pétou (feat. Charles Vicomte)  LORENZO",
+      "artist": "LORENZO",
+      "duration": "2:40",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 160
+    },
+    {
+      "position": 484,
+      "title": "Tu le C  LORENZO",
+      "artist": "LORENZO",
+      "duration": "2:48",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 168
+    },
+    {
+      "position": 485,
+      "title": "What's Going On Marvin Gaye",
+      "artist": "Marvin Gaye",
+      "duration": "3:52",
+      "genre": "Non spécifié",
+      "year": 1971,
+      "durationSec": 232
+    },
+    {
+      "position": 486,
+      "title": "Give Life Back to Music Daft Punk",
+      "artist": "Daft Punk",
+      "duration": "4:34",
+      "genre": "Non spécifié",
+      "year": 2013,
+      "durationSec": 274
+    },
+    {
+      "position": 487,
+      "title": "The Rumbling SiM",
+      "artist": "SiM",
+      "duration": "3:40",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 220
+    },
+    {
+      "position": 488,
+      "title": "SLEEP WHEN IM DEAD  Kami Kehoe",
+      "artist": "Kami Kehoe",
+      "duration": "2:32",
+      "genre": "Non spécifié",
+      "year": 2024,
+      "durationSec": 152
+    },
+    {
+      "position": 489,
+      "title": "God of War Bear McCreary",
+      "artist": "Bear McCreary",
+      "duration": "4:06",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 246
+    },
+    {
+      "position": 490,
+      "title": "9mm (Cassette version)  Memphis Cult · Groove Dealers · SPLYXER",
+      "artist": "Memphis Cult · Groove Dealers · SPLYXER",
+      "duration": "1:26",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 86
+    },
+    {
+      "position": 491,
+      "title": "Emo  leo succulent",
+      "artist": "leo succulent",
+      "duration": "2:01",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 121
+    },
+    {
+      "position": 492,
+      "title": "Debout  leo succulent",
+      "artist": "leo succulent",
+      "duration": "1:24",
+      "genre": "Non spécifié",
+      "year": 2023,
+      "durationSec": 84
+    },
+    {
+      "position": 493,
+      "title": "House of Memories Panic! At the Disco",
+      "artist": "Panic! At the Disco",
+      "duration": "3:28",
+      "genre": "Non spécifié",
+      "year": 2016,
+      "durationSec": 208
+    },
+    {
+      "position": 494,
+      "title": "Les prisons de Nantes Tri Yann An Naoned",
+      "artist": "Tri Yann An Naoned",
+      "duration": "2:06",
+      "genre": "Non spécifié",
+      "year": 1972,
+      "durationSec": 126
+    },
+    {
+      "position": 495,
+      "title": "La javanaise Serge Gainsbourg",
+      "artist": "Serge Gainsbourg",
+      "duration": "2:29",
+      "genre": "Non spécifié",
+      "year": 1962,
+      "durationSec": 149
+    },
+    {
+      "position": 496,
+      "title": "Le sud Nino Ferrer",
+      "artist": "Nino Ferrer",
+      "duration": "4:35",
+      "genre": "Non spécifié",
+      "year": 1966,
+      "durationSec": 275
+    },
+    {
+      "position": 497,
+      "title": "Partenaire particulier Partenaire Particulier",
+      "artist": "Partenaire Particulier",
+      "duration": "4:06",
+      "genre": "Non spécifié",
+      "year": 2009,
+      "durationSec": 246
+    },
+    {
+      "position": 498,
+      "title": "Ça fait rire les oiseaux La Compagnie Créole",
+      "artist": "La Compagnie Créole",
+      "duration": "3:42",
+      "genre": "Non spécifié",
+      "year": 1986,
+      "durationSec": 222
+    },
+    {
+      "position": 499,
+      "title": "Sarà Perché Ti Amo Ricchi & Poveri",
+      "artist": "Ricchi & Poveri",
+      "duration": "3:02",
+      "genre": "Non spécifié",
+      "year": 1981,
+      "durationSec": 182
+    },
+    {
+      "position": 500,
+      "title": "GOA Rilès",
+      "artist": "Rilès",
+      "duration": "2:26",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 146
+    },
+    {
+      "position": 501,
+      "title": "Vesoul Jacques Brel",
+      "artist": "Jacques Brel",
+      "duration": "3:08",
+      "genre": "Non spécifié",
+      "year": 1968,
+      "durationSec": 188
+    },
+    {
+      "position": 502,
+      "title": "Il est cinq heure, Paris s'éveille Jacques Dutronc",
+      "artist": "Jacques Dutronc",
+      "duration": "2:56",
+      "genre": "Non spécifié",
+      "year": 1968,
+      "durationSec": 176
+    },
+    {
+      "position": 503,
+      "title": "Pour un flirt Michel Delpech",
+      "artist": "Michel Delpech",
+      "duration": "3:26",
+      "genre": "Non spécifié",
+      "year": 1990,
+      "durationSec": 206
+    },
+    {
+      "position": 504,
+      "title": "Foule sentimentale Alain Souchon",
+      "artist": "Alain Souchon",
+      "duration": "5:24",
+      "genre": "Non spécifié",
+      "year": 1993,
+      "durationSec": 324
+    },
+    {
+      "position": 505,
+      "title": "Mistral Gagnant Renaud",
+      "artist": "Renaud",
+      "duration": "2:45",
+      "genre": "Non spécifié",
+      "year": 1985,
+      "durationSec": 165
+    },
+    {
+      "position": 506,
+      "title": "Les Champs-Elysées Joe Dassin",
+      "artist": "Joe Dassin",
+      "duration": "2:37",
+      "genre": "Non spécifié",
+      "year": 1969,
+      "durationSec": 157
+    },
+    {
+      "position": 507,
+      "title": "Je suis venu te dire que je m'en vais Serge Gainsbourg",
+      "artist": "Serge Gainsbourg",
+      "duration": "3:23",
+      "genre": "Non spécifié",
+      "year": 1973,
+      "durationSec": 203
+    },
+    {
+      "position": 509,
+      "title": "La valse à Mille Temps Jacques Brel",
+      "artist": "Jacques Brel",
+      "duration": "3:48",
+      "genre": "Non spécifié",
+      "year": 1960,
+      "durationSec": 228
+    },
+    {
+      "position": 510,
+      "title": "J'aime les filles Jacques Dutronc",
+      "artist": "Jacques Dutronc",
+      "duration": "2:57",
+      "genre": "Non spécifié",
+      "year": 1968,
+      "durationSec": 177
+    },
+    {
+      "position": 511,
+      "title": "Elle a les yeux révolver Marc Lavoine",
+      "artist": "Marc Lavoine",
+      "duration": "3:36",
+      "genre": "Non spécifié",
+      "year": 1985,
+      "durationSec": 216
+    },
+    {
+      "position": 512,
+      "title": "Douce France Charles Trenet",
+      "artist": "Charles Trenet",
+      "duration": "3:11",
+      "genre": "Non spécifié",
+      "year": 1947,
+      "durationSec": 191
+    },
+    {
+      "position": 513,
+      "title": "Les Feuilles Mortes Yves Montand",
+      "artist": "Yves Montand",
+      "duration": "3:21",
+      "genre": "Non spécifié",
+      "year": 1946,
+      "durationSec": 201
+    },
+    {
+      "position": 514,
+      "title": "Mon fils ma bataille Daniel Balavoine",
+      "artist": "Daniel Balavoine",
+      "duration": "4:08",
+      "genre": "Non spécifié",
+      "year": 1980,
+      "durationSec": 248
+    },
+    {
+      "position": 515,
+      "title": "Milord Édith Piaf",
+      "artist": "Édith Piaf",
+      "duration": "4:31",
+      "genre": "Non spécifié",
+      "year": 1959,
+      "durationSec": 271
+    },
+    {
+      "position": 516,
+      "title": "Et si tu n'existais pas Joe Dassin",
+      "artist": "Joe Dassin",
+      "duration": "3:26",
+      "genre": "Non spécifié",
+      "year": 1975,
+      "durationSec": 206
+    },
+    {
+      "position": 517,
+      "title": "Il Jouait Du Piano Debout (Live 88) France Gall",
+      "artist": "France Gall",
+      "duration": "5:38",
+      "genre": "Non spécifié",
+      "year": 1988,
+      "durationSec": 338
+    },
+    {
+      "position": 518,
+      "title": "La Groupie Du Pianiste Michel Berger",
+      "artist": "Michel Berger",
+      "duration": "4:42",
+      "genre": "Non spécifié",
+      "year": 1980,
+      "durationSec": 282
+    },
+    {
+      "position": 519,
+      "title": "San Francisco Maxime Le Forestier",
+      "artist": "Maxime Le Forestier",
+      "duration": "2:47",
+      "genre": "Non spécifié",
+      "year": 1972,
+      "durationSec": 167
+    },
+    {
+      "position": 520,
+      "title": "Tous les Garçons et Les Filles Françoise Hardy",
+      "artist": "Françoise Hardy",
+      "duration": "3:06",
+      "genre": "Non spécifié",
+      "year": 1962,
+      "durationSec": 186
+    },
+    {
+      "position": 521,
+      "title": "Chanson sur ma drôle de vie Véronique Sanson · Vianney",
+      "artist": "Véronique Sanson · Vianney",
+      "duration": "2:37",
+      "genre": "Non spécifié",
+      "year": 2018,
+      "durationSec": 157
+    },
+    {
+      "position": 522,
+      "title": "Le chanteur Daniel Balavoine",
+      "artist": "Daniel Balavoine",
+      "duration": "3:54",
+      "genre": "Non spécifié",
+      "year": 1978,
+      "durationSec": 234
+    },
+    {
+      "position": 523,
+      "title": "Place des Grands Hommes Patrick Bruel",
+      "artist": "Patrick Bruel",
+      "duration": "4:28",
+      "genre": "Non spécifié",
+      "year": 1989,
+      "durationSec": 268
+    },
+    {
+      "position": 524,
+      "title": "La belle vie Sacha Distel",
+      "artist": "Sacha Distel",
+      "duration": "2:03",
+      "genre": "Non spécifié",
+      "year": 1998,
+      "durationSec": 123
+    },
+    {
+      "position": 525,
+      "title": "Freaks Surf Curse",
+      "artist": "Surf Curse",
+      "duration": "2:27",
+      "genre": "Non spécifié",
+      "year": 2015,
+      "durationSec": 147
+    },
+    {
+      "position": 526,
+      "title": "膠着 高梨康治",
+      "artist": "高梨康治",
+      "duration": "2:33",
+      "genre": "Non spécifié",
+      "year": 2007,
+      "durationSec": 153
+    },
+    {
+      "position": 527,
+      "title": "World In My Eyes Depeche Mode",
+      "artist": "Depeche Mode",
+      "duration": "4:26",
+      "genre": "Non spécifié",
+      "year": 1990,
+      "durationSec": 266
+    },
+    {
+      "position": 528,
+      "title": "Le Pudding à l'Arsenic Magoyond",
+      "artist": "Magoyond",
+      "duration": "2:37",
+      "genre": "Non spécifié",
+      "year": 2016,
+      "durationSec": 157
+    },
+    {
+      "position": 529,
+      "title": "L'aventurier Indochine",
+      "artist": "Indochine",
+      "duration": "3:51",
+      "genre": "Non spécifié",
+      "year": 1982,
+      "durationSec": 231
+    },
+    {
+      "position": 530,
+      "title": "I Got You (I Feel Good) James Brown",
+      "artist": "James Brown",
+      "duration": "2:47",
+      "genre": "Non spécifié",
+      "year": 1964,
+      "durationSec": 167
+    },
+    {
+      "position": 531,
+      "title": "Le sanglier DaPoule",
+      "artist": "DaPoule",
+      "duration": "3:22",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 202
+    },
+    {
+      "position": 532,
+      "title": "Highway to Hell AC/DC",
+      "artist": "AC/DC",
+      "duration": "3:28",
+      "genre": "Non spécifié",
+      "year": 1979,
+      "durationSec": 208
+    },
+    {
+      "position": 533,
+      "title": "Thunderstruck AC/DC",
+      "artist": "AC/DC",
+      "duration": "4:52",
+      "genre": "Non spécifié",
+      "year": 1990,
+      "durationSec": 292
+    },
+    {
+      "position": 534,
+      "title": "Smooth Criminal Michael Jackson",
+      "artist": "Michael Jackson",
+      "duration": "4:17",
+      "genre": "Non spécifié",
+      "year": 1987,
+      "durationSec": 257
+    },
+    {
+      "position": 535,
+      "title": "The World of Adventurers (Kanzenban) 平野義久",
+      "artist": "平野義久",
+      "duration": "2:40",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 160
+    },
+    {
+      "position": 536,
+      "title": "Departure! (Tv Size) Masatoshi Ono",
+      "artist": "Masatoshi Ono",
+      "duration": "1:24",
+      "genre": "Non spécifié",
+      "year": 2011,
+      "durationSec": 84
+    },
+    {
+      "position": 537,
+      "title": "Kujirato Yori 平野義久",
+      "artist": "平野義久",
+      "duration": "2:01",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 121
+    },
+    {
+      "position": 538,
+      "title": "Mount Everest  Labrinth",
+      "artist": "Labrinth",
+      "duration": "2:37",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 157
+    },
+    {
+      "position": 539,
+      "title": "Juju Woman Labrinth",
+      "artist": "Labrinth",
+      "duration": "0:48",
+      "genre": "Non spécifié",
+      "year": 2019,
+      "durationSec": 48
+    },
+    {
+      "position": 540,
+      "title": "Hunter ☆ March 平野義久",
+      "artist": "平野義久",
+      "duration": "1:24",
+      "genre": "Non spécifié",
+      "year": 2012,
+      "durationSec": 84
+    },
+    {
+      "position": 541,
+      "title": "Halo Main Theme (from \"Halo\" TV Series) [Epic Version] Alala",
+      "artist": "Alala",
+      "duration": "5:22",
+      "genre": "Non spécifié",
+      "year": 2022,
+      "durationSec": 322
+    },
+    {
+      "position": 542,
+      "title": "Dragostea din tei O-Zone",
+      "artist": "O-Zone",
+      "duration": "3:35",
+      "genre": "Non spécifié",
+      "year": 2004,
+      "durationSec": 215
+    },
+    {
+      "position": 543,
+      "title": "Something In the Way Nirvana",
+      "artist": "Nirvana",
+      "duration": "3:52",
+      "genre": "Non spécifié",
+      "year": 1991,
+      "durationSec": 232
+    },
+    {
+      "position": 544,
+      "title": "Love Is a Long Road Tom Petty",
+      "artist": "Tom Petty",
+      "duration": "4:07",
+      "genre": "Non spécifié",
+      "year": 1989,
+      "durationSec": 247
+    },
+    {
+      "position": 545,
+      "title": "Is It Any Wonder? Keane",
+      "artist": "Keane",
+      "duration": "3:06",
+      "genre": "Non spécifié",
+      "year": 2006,
+      "durationSec": 186
+    },
+    {
+      "position": 546,
+      "title": "Un Jour Sans Fin Fievel",
+      "artist": "Fievel",
+      "duration": "3:46",
+      "genre": "Non spécifié",
+      "year": 2020,
+      "durationSec": 226
     }
   ]
 }
