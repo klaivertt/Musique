@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
@@ -558,7 +558,6 @@
                                     <span class="zoom-level" id="zoomArtists">50%</span>
                                     <button class="zoom-btn" onclick="zoomChart('chartArtists', 1.2)" title="Zoom avant">+</button>
                                 </div>
-                                <button class="chart-btn" onclick="toggleFullscreen('chartArtistsContainer')" title="Plein écran">🔍</button>
                                 <button class="chart-btn" onclick="sortChart('artists', 'desc')" title="Trier décroissant">↓</button>
                                 <button class="chart-btn" onclick="sortChart('artists', 'alpha')" title="Trier alphabétiquement">🅰</button>
                             </div>
@@ -578,7 +577,6 @@
                                     <span class="zoom-level" id="zoomAlbums">50%</span>
                                     <button class="zoom-btn" onclick="zoomChart('chartAlbumsByArtist', 1.2)">+</button>
                                 </div>
-                                <button class="chart-btn" onclick="toggleFullscreen('chartAlbumsContainer')">🔍</button>
                             </div>
                         </div>
                         <canvas id="chartAlbumsByArtist" height="200"></canvas>
@@ -599,7 +597,6 @@
                                     <span class="zoom-level" id="zoomGenres">50%</span>
                                     <button class="zoom-btn" onclick="zoomChart('chartGenres', 1.2)">+</button>
                                 </div>
-                                <button class="chart-btn" onclick="toggleFullscreen('chartGenresContainer')">🔍</button>
                                 <button class="chart-btn" onclick="sortChart('genres', 'desc')">↓ %</button>
                                 <button class="chart-btn" onclick="sortChart('genres', 'alpha')">🅰 Genre</button>
                             </div>
@@ -615,7 +612,6 @@
                                     <span class="zoom-level" id="zoomYears">50%</span>
                                     <button class="zoom-btn" onclick="zoomChart('chartYears', 1.2)">+</button>
                                 </div>
-                                <button class="chart-btn" onclick="toggleFullscreen('chartYearsContainer')">🔍</button>
                             </div>
                         </div>
                         <canvas id="chartYears" height="140"></canvas>
@@ -631,10 +627,11 @@
                                 <span class="zoom-level" id="zoomTimeline">50%</span>
                                 <button class="zoom-btn" onclick="zoomChart('chartTimeline', 1.2)">+</button>
                             </div>
-                            <button class="chart-btn" onclick="toggleFullscreen('chartTimelineContainer')">🔍</button>
                         </div>
                     </div>
-                    <canvas id="chartTimeline" height="120"></canvas>
+                    <div style="overflow-x: auto; overflow-y: hidden;">
+                        <canvas id="chartTimeline" height="120"></canvas>
+                    </div>
                 </div>
 
                 <p id="dataHint" class="hint" style="margin-top:12px;">Chargement des données...</p>
@@ -649,11 +646,11 @@
     <script>
         let playlistData = null;
         let chartZoomLevels = {
-            chartArtists: 0.5,
-            chartAlbumsByArtist: 0.5,
-            chartGenres: 0.5,
-            chartYears: 0.5,
-            chartTimeline: 0.5
+            chartArtists: 1.0,
+            chartAlbumsByArtist: 1.0,
+            chartGenres: 1.0,
+            chartYears: 1.0,
+            chartTimeline: 1.0
         };
         let chartsData = {
             artists: null,
@@ -717,18 +714,6 @@
             analyzeAndRender();
         }
 
-        function toggleFullscreen(containerId) {
-            const container = document.getElementById(containerId);
-            if (!container.classList.contains('fullscreen')) {
-                container.classList.add('fullscreen');
-                document.body.style.overflow = 'hidden';
-            } else {
-                container.classList.remove('fullscreen');
-                document.body.style.overflow = 'auto';
-            }
-            setTimeout(() => analyzeAndRender(), 100);
-        }
-
         function setDisplayLimit(chartType, limit) {
             displayLimits[chartType] = limit;
             
@@ -767,16 +752,6 @@
             }
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.chart-container.fullscreen').forEach(container => {
-                    container.classList.remove('fullscreen');
-                    document.body.style.overflow = 'auto';
-                });
-                analyzeAndRender();
-            }
-        });
-
         function drawHorizontalBar(canvas, data, color) {
             if (!data || data.length === 0) return;
             
@@ -785,7 +760,7 @@
             const rect = canvas.getBoundingClientRect();
             
             // Obtenir le niveau de zoom pour ce canvas
-            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
+            const zoomLevel = chartZoomLevels[canvas.id] || 1.0;
             
             // Calculer la hauteur nécessaire - adapter la taille des barres selon le nombre et le zoom
             const baseBarHeight = data.length > 100 ? 20 : data.length > 50 ? 25 : 30;
@@ -889,7 +864,7 @@
             const rect = canvas.getBoundingClientRect();
             
             // Obtenir le niveau de zoom pour ce canvas
-            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
+            const zoomLevel = chartZoomLevels[canvas.id] || 1.0;
             
             // Calculer la hauteur nécessaire - adapter la taille des barres selon le nombre et le zoom
             const baseBarHeight = data.length > 100 ? 20 : data.length > 50 ? 25 : 30;
@@ -995,7 +970,7 @@
             const rect = canvas.getBoundingClientRect();
             
             // Obtenir le niveau de zoom pour ce canvas
-            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
+            const zoomLevel = chartZoomLevels[canvas.id] || 1.0;
             
             // Calculer la largeur nécessaire pour afficher toutes les barres lisiblement avec zoom
             const baseBarWidth = 25;
@@ -1073,7 +1048,7 @@
             const rect = canvas.getBoundingClientRect();
             
             // Obtenir le niveau de zoom pour ce canvas
-            const zoomLevel = chartZoomLevels[canvas.id] || 0.5;
+            const zoomLevel = chartZoomLevels[canvas.id] || 1.0;
             
             // Calculer la largeur nécessaire avec le zoom
             const baseMinWidth = 25;
